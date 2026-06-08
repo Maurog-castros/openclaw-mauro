@@ -18,7 +18,7 @@ CONTAINER_RUN_PY = f"{CONTAINER_SCRIPTS}/run-finanzas-py.sh"
 SUPP_SOUL = f"""# Agente Soporte (/supp)
 
 Experto OpenClaw, agentes LLM, gateway Docker, WhatsApp cola, context overflow.
-Espanol chileno. Respuestas CORTAS (max 8 lineas).
+Espanol chileno. Respuestas CORTAS (max 8 lineas). WhatsApp: *negrita*, emojis, ───. Menu 1-5 al final.
 
 ## WhatsApp /supp
 

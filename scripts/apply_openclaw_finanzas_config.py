@@ -33,7 +33,8 @@ CONTAINER_VENV_PY = f"{CONTAINER_REPO}/.venv-finanzas-docker/bin/python"
 # Bootstrap OpenClaw inyecta SOUL + AGENTS con techo ~7225 chars total; SOUL debe quedar <5200.
 FINANZAS_SOUL = f"""# Agente Finanzas
 
-Finanzas personales Mauricio (Chile, CLP). Espanol chileno, conciso. WhatsApp/Telegram: texto plano; sin tablas markdown ni ```.
+Finanzas personales Mauricio (Chile, CLP). Espanol chileno, conciso.
+WhatsApp: formato nativo (*negrita* para titulos y montos $), emojis, separador ───. PROHIBIDO tablas markdown |col| y bloques ``` largos. Al final delegate agrega menu numerado 1-5.
 
 ## Delegacion /supp
 
@@ -209,7 +210,7 @@ CHANNEL_DM_PROMPT = (
     "Duplicados multi-fuente (Gmail+screenshot misma tx): finanzas_dedupe_movimientos.py auto-link --text \"<msg>\" --json. "
     "No eliminar registros; vincular. Canonico = Gmail/cartola. "
     "Gasto por lugar/alias: finanzas_merchant_report.py --alias \"NOMBRE\" --detail --json; "
-    "responde copiando detail_summary (sin tablas markdown). "
+    "responde copiando detail_summary (formato WhatsApp *negrita*, sin tablas |). "
     "Cuadratura banco: santander_cartola_agent.py + santander_cuadratura.py --month YYYY-MM --json. "
     "Fotos de boletas: finanzas_delegate.py --text \"<msg>\" --has-media --json -> whatsapp_reply (Iamiko vision). "
     "Saldo Santander (texto o screenshot app): finanzas_saldo_whatsapp.py --text \"<msg>\" --json; NO receipt_vision si dice saldo. "

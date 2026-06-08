@@ -15,9 +15,13 @@ if not ROOT.exists():
     ROOT = Path(__file__).resolve().parent.parent
 
 SCR = ROOT / "scripts"
-RUN_PY = SCR / "run-finanzas-py.sh"
+if str(SCR) not in sys.path:
+    sys.path.insert(0, str(SCR))
 
-SUPP_PREFIX_RE = re.compile(r"^\s*/supp\b\s*", re.I)
+from whatsapp_menu import finish_reply, resolve_menu_choice
+
+RUN_PY = SCR / "run-finanzas-py.sh"
+SUPP_PREFIX_RE = re.compile(r"^\s*/supp\b", re.I)
 
 
 def py_cmd(script: str, *args: str) -> list[str]:
@@ -51,10 +55,10 @@ def cmd_status() -> dict:
     except Exception:
         pass
 
-    lines = ["Supp — status", scan.get("summary", "scan ok")]
+    lines = ["🛠 *Supp — status*", scan.get("summary", "scan ok")]
     if rows:
         lines.append("")
-        lines.append("Ultimos CSV:")
+        lines.append("*Ultimos hallazgos:*")
         for r in reversed(rows):
             lines.append(
                 f"• {r.get('detected_at', '')[:16]} [{r.get('status')}] "
@@ -64,6 +68,36 @@ def cmd_status() -> dict:
     return {"status": "ok", "summary": summary, "whatsapp_reply": summary}
 
 
+def dispatch_supp(text: str) -> dict:
+    lower = text.lower()
+
+    if not text or lower in {"status", "estado", "help", "ayuda"}:
+        return cmd_status()
+    if lower in {"scan", "escanear", "revisar", "logs"}:
+        result = run_json(py_cmd("support_scan_logs.py", "--json"))
+        result.setdefault("whatsapp_reply", result.get("summary", ""))
+        return result
+    if lower.split()[0] in {"fix", "arregla", "remedia", "soluciona"}:
+        result = run_json(py_cmd("support_remediate.py", "--auto", "--json"))
+        result.setdefault("whatsapp_reply", result.get("summary", ""))
+        return result
+    if lower.startswith("ultimos"):
+        return cmd_status()
+
+    result = run_json(py_cmd("support_scan_logs.py", "--json"))
+    if result.get("open_findings", 0) > 0:
+        fix = run_json(py_cmd("support_remediate.py", "--auto", "--json"))
+        return {
+            "status": "ok",
+            "whatsapp_reply": (
+                f"🛠 *Supp*\n{result.get('summary', '')}\n\n"
+                f"───\n{fix.get('whatsapp_reply', fix.get('summary', ''))}"
+            ),
+        }
+    result["whatsapp_reply"] = f"🛠 *Supp*\n{result.get('summary', 'Todo OK')}"
+    return result
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Delegate /supp")
     parser.add_argument("--text", default="")
@@ -71,33 +105,20 @@ def main() -> None:
     args = parser.parse_args()
 
     text = strip_prefix(args.text)
-    lower = text.lower()
 
-    if not text or lower in {"status", "estado", "help", "ayuda"}:
-        result = cmd_status()
-    elif lower in {"scan", "escanear", "revisar", "logs"}:
-        result = run_json(py_cmd("support_scan_logs.py", "--json"))
-        result.setdefault("whatsapp_reply", result.get("summary", ""))
-    elif lower.split()[0] in {"fix", "arregla", "remedia", "soluciona"}:
-        result = run_json(py_cmd("support_remediate.py", "--auto", "--json"))
-        result.setdefault("whatsapp_reply", result.get("summary", ""))
-    elif lower.startswith("ultimos"):
-        result = cmd_status()
+    menu_opt = resolve_menu_choice(text)
+    if menu_opt:
+        from finanzas_delegate import run_menu_option as fin_run_menu
+
+        result = fin_run_menu(menu_opt)
     else:
-        result = run_json(py_cmd("support_scan_logs.py", "--json"))
-        if result.get("open_findings", 0) > 0:
-            fix = run_json(py_cmd("support_remediate.py", "--auto", "--json"))
-            result = {
-                "status": "ok",
-                "whatsapp_reply": (
-                    f"Supp\n{result.get('summary', '')}\n\n"
-                    f"---\n{fix.get('whatsapp_reply', fix.get('summary', ''))}"
-                ),
-            }
-        else:
-            result["whatsapp_reply"] = f"Supp\n{result.get('summary', 'Todo OK')}"
+        result = dispatch_supp(text)
 
     result.setdefault("agent", "supp")
+    reply = result.get("whatsapp_reply") or result.get("summary") or ""
+    if reply:
+        result["whatsapp_reply"] = finish_reply(reply, agent="supp")
+
     if args.json:
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:
