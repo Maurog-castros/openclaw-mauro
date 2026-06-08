@@ -21,7 +21,11 @@ from finanzas_common import (
     resolve_data_path,
 )
 from finanzas_merchant_report import fmt_clp, fmt_date_dd_mm_yy, load_all_rows
-from finanzas_receipt_caption import display_merchant_name, looks_like_bank_screenshot
+from finanzas_receipt_caption import (
+    display_merchant_name,
+    looks_like_bank_screenshot,
+    looks_like_equal_split,
+)
 
 RECEIPT_SOURCES = frozenset(
     {"lider_gmail", "telegram_foto", "whatsapp_foto", "openclaw_web", "manual"}
@@ -104,6 +108,22 @@ def group_receipts(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
     return filtered
 
 
+def should_show_item_amounts(items: List[Dict[str, Any]], ticket_total: int) -> bool:
+    if len(items) <= 1:
+        return True
+    amounts = [int(i.get("amount") or 0) for i in items]
+    if ticket_total and sum(amounts) != ticket_total:
+        return False
+    return not looks_like_equal_split(items, ticket_total)
+
+
+def format_item_amount(item: Dict[str, Any], *, ticket_total: int, items_count: int) -> int:
+    amount = int(item.get("amount") or 0)
+    if items_count == 1 and ticket_total and amount != ticket_total:
+        return ticket_total
+    return amount
+
+
 def build_summary(
     receipts: List[Dict[str, Any]],
     *,
@@ -138,11 +158,19 @@ def build_summary(
         if len(items) == 1 and items[0].get("product") == "boleta_sin_detalle_detectado":
             lines.append("   (sin detalle OCR)")
         elif items:
-            preview = items[:4]
-            for item in preview:
-                lines.append(f"   - {item.get('product') or 'item'} — {fmt_clp(int(item.get('amount') or 0))}")
-            if len(items) > 4:
-                lines.append(f"   ... +{len(items) - 4} items")
+            show_amounts = should_show_item_amounts(items, total)
+            if not show_amounts:
+                products = ", ".join(i.get("product") or "item" for i in items[:6])
+                lines.append(f"   - {products}")
+                if len(items) > 6:
+                    lines.append(f"   ... +{len(items) - 6} items")
+            else:
+                preview = items[:4]
+                for item in preview:
+                    amt = format_item_amount(item, ticket_total=total, items_count=len(items))
+                    lines.append(f"   - {item.get('product') or 'item'} — {fmt_clp(amt)}")
+                if len(items) > 4:
+                    lines.append(f"   ... +{len(items) - 4} items")
     if len(receipts) > limit:
         lines.append(f"(Total registradas: {len(receipts)}; mostrando {limit})")
     return "\n".join(lines)

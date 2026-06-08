@@ -51,6 +51,17 @@ def is_generic_product(name: str) -> bool:
     return n.startswith("compra") and len(n) <= 24
 
 
+def looks_like_equal_split(items: List[Dict[str, Any]], ticket_total: int) -> bool:
+    """Detecta montos inventados repartiendo el total en partes iguales."""
+    if len(items) < 2 or not ticket_total:
+        return False
+    amounts = [parse_clp(i.get("amount")) or 0 for i in items]
+    if sum(amounts) != ticket_total:
+        return False
+    avg = ticket_total / len(amounts)
+    return all(abs(amount - avg) <= max(10, ticket_total * 0.02) for amount in amounts)
+
+
 def enrich_receipt_from_caption(receipt: Dict[str, Any], caption: str) -> Dict[str, Any]:
     products = extract_caption_products(caption)
     if not products:
@@ -59,35 +70,23 @@ def enrich_receipt_from_caption(receipt: Dict[str, Any], caption: str) -> Dict[s
     items: List[Dict[str, Any]] = list(receipt.get("items") or [])
     ticket_total = parse_clp(receipt.get("ticket_total")) or 0
     caption_text = strip_fin_prefix(caption).strip()
+    generic_items = not items or all(is_generic_product(str(i.get("product") or "")) for i in items)
+    split_artifact = looks_like_equal_split(items, ticket_total)
 
-    if len(products) == 1 and len(items) == 1 and is_generic_product(str(items[0].get("product") or "")):
+    # Caption describe productos; el total viene del OCR de la boleta. Nunca repartir a ojo.
+    if generic_items or split_artifact or len(products) > 1:
+        items = [
+            {
+                "product": caption_text,
+                "quantity": 1,
+                "amount": ticket_total or (parse_clp(items[0].get("amount")) if items else 0),
+                "category": category_for_product(caption_text),
+            }
+        ]
+    elif len(products) == 1 and len(items) == 1:
         items[0]["product"] = products[0]
-    elif not items or all(is_generic_product(str(i.get("product") or "")) for i in items):
-        if len(products) > 1 and ticket_total:
-            per = ticket_total // len(products)
-            rebuilt: List[Dict[str, Any]] = []
-            running = 0
-            for idx, product in enumerate(products):
-                amount = ticket_total - running if idx == len(products) - 1 else per
-                running += amount
-                rebuilt.append(
-                    {
-                        "product": product,
-                        "quantity": 1,
-                        "amount": amount,
-                        "category": category_for_product(product),
-                    }
-                )
-            items = rebuilt
-        else:
-            items = [
-                {
-                    "product": caption_text,
-                    "quantity": 1,
-                    "amount": ticket_total or (parse_clp(items[0].get("amount")) if items else 0),
-                    "category": category_for_product(caption_text),
-                }
-            ]
+        if ticket_total:
+            items[0]["amount"] = ticket_total
 
     receipt = dict(receipt)
     receipt["items"] = items

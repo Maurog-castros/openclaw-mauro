@@ -24,7 +24,11 @@ from finanzas_common import (
     resolve_data_path,
     write_unified_csv,
 )
-from finanzas_receipt_caption import enrich_receipt_from_caption, extract_caption_products, is_generic_product
+from finanzas_receipt_caption import (
+    enrich_receipt_from_caption,
+    is_generic_product,
+    looks_like_equal_split,
+)
 
 # Captions conocidos del hilo WhatsApp 07-06-2026
 KNOWN_CAPTIONS: Dict[str, str] = {
@@ -101,12 +105,18 @@ def repair_vision_csv(vision_path: Path) -> Dict[str, Any]:
         doc = (row.get("receipt_number") or "").strip()
         by_receipt.setdefault(doc or row.get("image_hash") or "?", []).append(row)
 
-    for key, group in by_receipt.items():
+    for _key, group in by_receipt.items():
         doc = (group[0].get("receipt_number") or "").strip()
         caption = KNOWN_CAPTIONS.get(doc, "")
-        generic = all(is_generic_product(r.get("product") or "") for r in group)
-        if caption and generic:
-            group = apply_caption_to_vision_rows(group, caption)
+        ticket = parse_clp(group[0].get("ticket_total")) or 0
+        items = [{"product": r.get("product"), "amount": parse_clp(r.get("line_amount"))} for r in group]
+        needs_caption = bool(caption) and (
+            all(is_generic_product(r.get("product") or "") for r in group)
+            or looks_like_equal_split(items, ticket)
+            or len(group) > 1
+        )
+        if needs_caption:
+            group = apply_caption_to_vision_rows([group[0]], caption)
             fixed += 1
         kept.extend(group)
 
@@ -134,26 +144,29 @@ def repair_unified_csv(unified_path: Path) -> Dict[str, Any]:
         if doc in KNOWN_CAPTIONS:
             by_doc.setdefault(doc, []).append(row)
 
+    collapse_ids: set[str] = set()
     for doc, group in by_doc.items():
         caption = KNOWN_CAPTIONS[doc]
-        products = extract_caption_products(caption)
-        if not products:
-            continue
-        if len(products) == 1 and len(group) == 1 and is_generic_product(group[0].get("description") or ""):
-            group[0]["description"] = products[0]
+        ticket = parse_clp(group[0].get("ticket_total")) or 0
+        items = [{"product": r.get("description"), "amount": parse_clp(r.get("amount_clp"))} for r in group]
+        if len(group) == 1:
+            row = group[0]
+            row["description"] = caption
+            if ticket:
+                row["amount_clp"] = str(ticket)
             fixed += 1
-        elif len(products) > 1 and all(is_generic_product(r.get("description") or "") for r in group):
-            ticket = parse_clp(group[0].get("ticket_total")) or 0
-            per = ticket // len(products) if ticket else 0
-            if len(group) == len(products):
-                for idx, row in enumerate(group):
-                    row["description"] = products[idx]
-                    if per:
-                        row["amount_clp"] = str(per if idx < len(products) - 1 else ticket - per * (len(products) - 1))
-                fixed += 1
-            elif len(group) == 1:
-                group[0]["description"] = caption
-                fixed += 1
+            continue
+        if looks_like_equal_split(items, ticket) or len(group) > 1:
+            keep = group[0]
+            keep["description"] = caption
+            if ticket:
+                keep["amount_clp"] = str(ticket)
+            for row in group[1:]:
+                collapse_ids.add(row.get("movement_id") or "")
+            fixed += 1
+
+    if collapse_ids:
+        kept = [r for r in kept if (r.get("movement_id") or "") not in collapse_ids]
 
     write_unified_csv(unified_path, kept)
     return {"unified_purged": purged, "unified_fixed": fixed, "unified_rows": len(kept)}
