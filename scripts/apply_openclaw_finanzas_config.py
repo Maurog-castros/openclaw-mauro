@@ -103,6 +103,16 @@ Rango: `--from` `--to`. -> `summary`. movement_count 0: dilo.
 `$PY $SCR/finanzas_observaciones.py set --csv $CSV --date YYYY-MM-DD --amount N --match texto --note "..." --json`
 O `--movement-id ID`. clear: `--movement-id ID`.
 
+## Misma transaccion en varias fuentes (Gmail + screenshot)
+
+Un pago puede aparecer 2+ veces: cronjob Gmail (comprobante) + linea en screenshot app Santander (+ a veces OCR falso como boleta). **Es la misma operacion**, no hay que borrar filas.
+
+Si el usuario dice duplicado / mismo monto / corrige / otra vez:
+`$PY $SCR/finanzas_dedupe_movimientos.py auto-link --text "<msg>" --json` -> copia `whatsapp_reply`.
+Canonico = Gmail o cartola. Screenshot/OCR quedan vinculados (no cuentan aparte en totales).
+PROHIBIDO preguntar "elimino uno?" — explica que ambas fuentes son validas, es un solo pago.
+Ejemplo arriendo: Gmail 6/jun + screenshot 8/jun = misma transferencia RENOVAL.
+
 ## Cuadratura Santander
 
 1. `$PY $SCR/santander_cartola_agent.py --output $DATA/santander_cartola.csv --json`
@@ -191,6 +201,8 @@ CHANNEL_DM_PROMPT = (
     "Transferencias: finanzas_transferencias_report.py --limit N --json; NUNCA cat el CSV. "
     "IG (link o seguimiento «ultimo post»/«de que trata»): content_instagram_whatsapp.py --text \"<msg>\" --json -> whatsapp_reply. "
     "Observaciones: finanzas_observaciones.py set --date ... --amount ... --match ... --note \"...\" --json. "
+    "Duplicados multi-fuente (Gmail+screenshot misma tx): finanzas_dedupe_movimientos.py auto-link --text \"<msg>\" --json. "
+    "No eliminar registros; vincular. Canonico = Gmail/cartola. "
     "Gasto por lugar/alias: finanzas_merchant_report.py --alias \"NOMBRE\" --detail --json; "
     "responde copiando detail_summary (sin tablas markdown). "
     "Cuadratura banco: santander_cartola_agent.py + santander_cuadratura.py --month YYYY-MM --json. "

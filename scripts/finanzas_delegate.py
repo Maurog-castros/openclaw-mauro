@@ -36,6 +36,10 @@ SALDO_RE = re.compile(
     r"|este\s+es\s+mi\s+saldo|mi\s+saldo\s+es|saldo\s+real|captura|screenshot",
     re.I,
 )
+DEDUPE_RE = re.compile(
+    r"\b(duplicad|mismo\s+monto|otra\s+vez|corrige|es\s+la\s+misma|misma\s+transacc)\b",
+    re.I,
+)
 BOLETA_RE = re.compile(
     r"\b(boleta|ticket|compra|recibo|foto|supermercado|farmacia|minimarket)\b",
     re.I,
@@ -78,6 +82,32 @@ def latest_inbound_image(max_age_sec: int = 120) -> Path | None:
     if not candidates:
         return None
     return max(candidates, key=lambda p: p.stat().st_mtime)
+
+
+def should_process_dedupe(text: str) -> bool:
+    if not DEDUPE_RE.search(text or ""):
+        return False
+    t = text or ""
+    if re.search(r"\$\s*\d{1,3}(?:\.\d{3})+|\d{5,}", t):
+        return True
+    if re.search(r"\b(TRANSF|RENOVAL|arriendo)\b", t, re.I):
+        return True
+    return False
+
+
+def run_dedupe(text: str) -> dict:
+    cmd = py_cmd("finanzas_dedupe_movimientos.py", "auto-link", "--text", text, "--json")
+    code, payload, stdout, stderr = run_json(cmd, timeout=120)
+    if code != 0 and not payload.get("whatsapp_reply"):
+        return {
+            "status": "error",
+            "agent": "fin",
+            "whatsapp_reply": "No pude vincular duplicados. Indica monto y nombre (ej. RENOVAL).",
+            "stderr": stderr[-800:],
+        }
+    payload.setdefault("agent", "fin")
+    payload.setdefault("status", payload.get("status", "ok"))
+    return payload
 
 
 def should_process_saldo(text: str, has_media: bool, image_path: str | None) -> bool:
@@ -226,6 +256,11 @@ def main() -> None:
 
     if RECENT_RECEIPTS_RE.search(text):
         result = run_recent_receipts()
+        print(json.dumps(result, ensure_ascii=False, indent=2) if args.json else result.get("whatsapp_reply", ""))
+        return
+
+    if should_process_dedupe(text):
+        result = run_dedupe(text)
         print(json.dumps(result, ensure_ascii=False, indent=2) if args.json else result.get("whatsapp_reply", ""))
         return
 
