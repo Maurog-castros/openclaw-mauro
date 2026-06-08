@@ -62,6 +62,11 @@ NUNCA `NO_REPLY`. Texto normal al usuario (OpenClaw envia al canal). No uses too
 Comando corto: **`/fin`** (acepta legacy `/finanzas`). Ejemplo: `/fin cuanto gaste en mayo`.
 Si el mensaje empieza con `/fin` o `/finanzas`, procesa el resto como consulta finanzas.
 
+## /new y /reset (sesion limpia)
+
+`/new` o `/reset` (sin /fin): delegate ejecuta reset y devuelve confirmacion. Copia `whatsapp_reply` tal cual.
+NO respondas vacio ni inventes; el delegate ya reinicia sesion + cola WhatsApp.
+
 ## Regla #1 — SIEMPRE delegate primero
 
 Para **todo** mensaje `/fin` (texto, foto, saldo, boleta, consultas):
@@ -201,7 +206,7 @@ CHANNEL_DM_PROMPT = (
     "Canal finanzas. NUNCA respondas NO_REPLY: siempre texto visible al usuario. "
     "PASO 1 OBLIGATORIO en cada mensaje: "
     f"{CONTAINER_RUN_PY} {CONTAINER_SCRIPTS}/finanzas_delegate.py --text \"<msg>\" [--has-media] --json. "
-    "Si status ok/skipped/processed: copia whatsapp_reply y TERMINA. Solo si delegate_miss sigue con scripts abajo. "
+    "Si status ok/processed: copia whatsapp_reply y TERMINA. /new y /reset los maneja el delegate (respuesta de confirmacion). Solo si delegate_miss sigue con scripts abajo. "
     "Ultimas boletas: finanzas_recent_receipts.py --limit N --json. "
     "Consultas por mes: finanzas_monthly_report.py --month YYYY-MM --json. "
     "Transferencias: finanzas_transferencias_report.py --limit N --json; NUNCA cat el CSV. "

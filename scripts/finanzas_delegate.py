@@ -37,7 +37,9 @@ RECENT_RECEIPTS_RE = re.compile(
     re.I,
 )
 RECENT_RECEIPTS_LIMIT_RE = re.compile(r"\b(\d{1,2})\s*(?:ultim(?:as|os))?\s*boleta", re.I)
-SKIP_CMD_RE = re.compile(r"^\s*/(?:new|reset|status|help)\b", re.I)
+NEW_RESET_RE = re.compile(r"^\s*/(?:new|reset)\b", re.I)
+HELP_CMD_RE = re.compile(r"^\s*/help\b", re.I)
+STATUS_CMD_RE = re.compile(r"^\s*/status\b", re.I)
 SALDO_RE = re.compile(
     r"\bsaldo\b|cuenta\s+corriente|\bsantander\b|\bdisponible\b"
     r"|este\s+es\s+mi\s+saldo|mi\s+saldo\s+es|saldo\s+real|captura|screenshot",
@@ -187,7 +189,7 @@ def should_process_saldo(text: str, has_media: bool, image_path: str | None) -> 
 
 
 def should_process_receipt(text: str, has_media: bool, image_path: str | None) -> bool:
-    if SKIP_CMD_RE.search(text):
+    if NEW_RESET_RE.search(text) or HELP_CMD_RE.search(text) or STATUS_CMD_RE.search(text):
         return False
     if RECENT_RECEIPTS_RE.search(text):
         return False
@@ -218,6 +220,74 @@ def parse_recent_receipts_limit(text: str, default: int = 10) -> int:
     if m2:
         return max(1, min(int(m2.group(1)), 20))
     return default
+
+
+def run_session_reset() -> dict:
+    script = ROOT / "scripts/clear-whatsapp-pending-remote.sh"
+    if not script.exists():
+        script = ROOT / "scripts/reset_finanzas_whatsapp_session.sh"
+    proc = subprocess.run(
+        ["bash", str(script)],
+        cwd=str(ROOT),
+        text=True,
+        capture_output=True,
+        timeout=180,
+        check=False,
+    )
+    out = (proc.stdout or proc.stderr or "").strip()
+    pending = "?"
+    sess = "?"
+    try:
+        from support_common import live_health
+
+        health = live_health()
+        pending = health.get("whatsapp_pending", 0)
+        sess = (health.get("fin_session") or {}).get("status", "?")
+    except ImportError:
+        pass
+    reply = (
+        "Sesion reiniciada.\n"
+        f"WhatsApp pending: {pending}\n"
+        f"Sesion fin: {sess}\n"
+        "Escribe /fin o tu consulta de nuevo."
+    )
+    if proc.returncode != 0:
+        reply = f"Reset con advertencias:\n{out[-400:]}\n\n{reply}"
+    return {"status": "ok", "agent": "fin", "whatsapp_reply": reply}
+
+
+def run_help() -> dict:
+    return {
+        "status": "ok",
+        "agent": "fin",
+        "whatsapp_reply": (
+            "Comandos:\n"
+            "/fin saldo — saldo Santander\n"
+            "/fin ultimas boletas — listado\n"
+            "/new o /reset — sesion limpia\n"
+            "/supp — soporte tecnico\n"
+            "Foto + texto — registrar boleta"
+        ),
+    }
+
+
+def run_status_cmd() -> dict:
+    try:
+        from support_common import live_health
+
+        health = live_health()
+        lines = [
+            "Estado /fin:",
+            f"Gateway: {'OK' if health.get('gateway_healthy') else 'NO'}",
+            f"WhatsApp pending: {health.get('whatsapp_pending', 0)}",
+            f"Sesion: {(health.get('fin_session') or {}).get('status', '?')}",
+            f"Entregas failed: {health.get('fin_failed_deliveries', 0)}",
+        ]
+        if health.get("needs_remediation"):
+            lines.append("Usa /supp fix o menu 5.")
+        return {"status": "ok", "agent": "fin", "whatsapp_reply": "\n".join(lines)}
+    except ImportError:
+        return run_saldo("como va mi saldo", None, None)
 
 
 def run_recent_receipts(limit: int = 10) -> dict:
@@ -337,8 +407,14 @@ def main() -> None:
     text = strip_fin_prefix(raw_text)
     image_path = args.image or (str(latest_inbound_image()) if args.has_media else None)
 
-    if SKIP_CMD_RE.search(text):
-        emit({"status": "skip", "agent": "fin", "whatsapp_reply": ""}, as_json=args.json, skip_menu=True)
+    if NEW_RESET_RE.search(text):
+        emit(run_session_reset(), as_json=args.json)
+        return
+    if HELP_CMD_RE.search(text):
+        emit(run_help(), as_json=args.json)
+        return
+    if STATUS_CMD_RE.search(text):
+        emit(run_status_cmd(), as_json=args.json)
         return
 
     menu_opt = resolve_menu_choice(text)
