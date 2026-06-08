@@ -223,36 +223,22 @@ def parse_recent_receipts_limit(text: str, default: int = 10) -> int:
 
 
 def run_session_reset() -> dict:
-    script = ROOT / "scripts/clear-whatsapp-pending-remote.sh"
-    if not script.exists():
-        script = ROOT / "scripts/reset_finanzas_whatsapp_session.sh"
-    proc = subprocess.run(
-        ["bash", str(script)],
-        cwd=str(ROOT),
-        text=True,
-        capture_output=True,
-        timeout=180,
-        check=False,
-    )
-    out = (proc.stdout or proc.stderr or "").strip()
-    pending = "?"
-    sess = "?"
     try:
-        from support_common import live_health
+        from support_common import clear_whatsapp_pending_and_reset_sessions, live_health
 
+        clear_whatsapp_pending_and_reset_sessions(restart_gateway=True)
         health = live_health()
         pending = health.get("whatsapp_pending", 0)
-        sess = (health.get("fin_session") or {}).get("status", "?")
+        sess = (health.get("fin_session") or {}).get("status") or "nueva"
     except ImportError:
-        pass
+        pending = "?"
+        sess = "?"
     reply = (
         "Sesion reiniciada.\n"
         f"WhatsApp pending: {pending}\n"
         f"Sesion fin: {sess}\n"
         "Escribe /fin o tu consulta de nuevo."
     )
-    if proc.returncode != 0:
-        reply = f"Reset con advertencias:\n{out[-400:]}\n\n{reply}"
     return {"status": "ok", "agent": "fin", "whatsapp_reply": reply}
 
 

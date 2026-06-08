@@ -130,6 +130,89 @@ def fin_failed_delivery_count() -> int:
         con.close()
 
 
+FIN_SESSION_KEYS = [
+    "agent:fin:whatsapp:default:direct:+56945046845",
+    "agent:fin:main",
+    "agent:finanzas:whatsapp:default:direct:+56945046845",
+    "agent:finanzas:main",
+]
+
+
+def clear_whatsapp_pending_and_reset_sessions(*, restart_gateway: bool = True) -> Dict[str, Any]:
+    """Limpia cola WA + sesiones fin (Python puro; no depende de bash CRLF)."""
+    import shutil
+    import sqlite3
+    from datetime import datetime
+
+    stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    pending_deleted = 0
+    failed_deleted = 0
+    sessions_removed: List[str] = []
+
+    if DEFAULT_SQLITE.exists():
+        backup = DEFAULT_SQLITE.with_name(f"{DEFAULT_SQLITE.name}.bak-clear-{stamp}")
+        shutil.copy2(DEFAULT_SQLITE, backup)
+        con = sqlite3.connect(DEFAULT_SQLITE)
+        try:
+            cur = con.cursor()
+            cur.execute(
+                "DELETE FROM plugin_state_entries "
+                "WHERE plugin_id='whatsapp' AND namespace LIKE 'inbound.v1.pending%'"
+            )
+            pending_deleted = cur.rowcount
+            cur.execute(
+                "DELETE FROM delivery_queue_entries WHERE status='failed' "
+                "AND (session_key LIKE 'agent:fin%' OR session_key LIKE 'agent:finanzas%')"
+            )
+            failed_deleted = cur.rowcount
+            con.commit()
+        finally:
+            con.close()
+
+    if DEFAULT_SESSIONS_JSON.exists():
+        backup = DEFAULT_SESSIONS_JSON.with_suffix(f".json.bak-reset-{stamp}")
+        shutil.copy2(DEFAULT_SESSIONS_JSON, backup)
+        data = json.loads(DEFAULT_SESSIONS_JSON.read_text(encoding="utf-8"))
+        sessions_base = DEFAULT_SESSIONS_JSON.parent
+        for key in FIN_SESSION_KEYS:
+            entry = data.pop(key, None)
+            if not entry:
+                continue
+            sessions_removed.append(key)
+            sid = entry.get("sessionId") or ""
+            for pattern in (f"{sid}.jsonl", f"{sid}.trajectory.jsonl", f"{sid}.trajectory-path.json"):
+                if sid:
+                    path = sessions_base / pattern
+                    if path.exists():
+                        path.rename(path.with_name(path.name + f".bak-reset-{stamp}"))
+        DEFAULT_SESSIONS_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    restart_msg = ""
+    if restart_gateway:
+        code, out, err = run_cmd(
+            [
+                "docker",
+                "compose",
+                "-f",
+                "docker-compose.yml",
+                "-f",
+                "docker-compose.finanzas-mounts.yml",
+                "restart",
+                "openclaw-gateway",
+            ],
+            cwd=REPO_ROOT / "openclaw",
+            timeout=120,
+        )
+        restart_msg = (out or err or f"exit={code}")[:200]
+
+    return {
+        "pending_deleted": pending_deleted,
+        "failed_deleted": failed_deleted,
+        "sessions_removed": sessions_removed,
+        "restart": restart_msg,
+    }
+
+
 def live_health() -> Dict[str, Any]:
     sess = fin_main_session_status()
     pending = whatsapp_pending_count()

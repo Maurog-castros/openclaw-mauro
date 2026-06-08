@@ -16,6 +16,7 @@ if str(_SCRIPTS) not in sys.path:
 from support_common import (
     AUTO_FIX_CATEGORIES,
     REPO_ROOT,
+    clear_whatsapp_pending_and_reset_sessions,
     gateway_healthy,
     git_commit_push,
     live_health,
@@ -29,11 +30,13 @@ from support_common import (
 
 
 def remediate_clear_whatsapp_and_reset() -> str:
-    script = REPO_ROOT / "scripts/clear-whatsapp-pending-remote.sh"
-    if not script.exists():
-        return "script clear-whatsapp no encontrado"
-    code, out, err = run_cmd(["bash", str(script)], timeout=180)
-    return (out or err or f"exit={code}")[:800]
+    result = clear_whatsapp_pending_and_reset_sessions(restart_gateway=True)
+    return (
+        f"pending deleted: {result.get('pending_deleted', 0)}; "
+        f"failed fin: {result.get('failed_deleted', 0)}; "
+        f"sessions: {','.join(result.get('sessions_removed') or []) or 'ninguna'}; "
+        f"{result.get('restart', '')}"
+    )[:800]
 
 
 def remediate_restart_gateway() -> str:
