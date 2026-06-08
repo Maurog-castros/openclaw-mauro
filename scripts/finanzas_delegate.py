@@ -36,6 +36,7 @@ RECENT_RECEIPTS_RE = re.compile(
     r"|\bcuales?\s+(?:son\s+)?(?:las?\s+)?ultim(?:as|os)\b",
     re.I,
 )
+RECENT_RECEIPTS_LIMIT_RE = re.compile(r"\b(\d{1,2})\s*(?:ultim(?:as|os))?\s*boleta", re.I)
 SKIP_CMD_RE = re.compile(r"^\s*/(?:new|reset|status|help)\b", re.I)
 SALDO_RE = re.compile(
     r"\bsaldo\b|cuenta\s+corriente|\bsantander\b|\bdisponible\b"
@@ -209,6 +210,16 @@ def should_process_receipt(text: str, has_media: bool, image_path: str | None) -
     return False
 
 
+def parse_recent_receipts_limit(text: str, default: int = 10) -> int:
+    m = RECENT_RECEIPTS_LIMIT_RE.search(text or "")
+    if m:
+        return max(1, min(int(m.group(1)), 20))
+    m2 = re.search(r"\b(\d{1,2})\s+boleta", text or "", re.I)
+    if m2:
+        return max(1, min(int(m2.group(1)), 20))
+    return default
+
+
 def run_recent_receipts(limit: int = 10) -> dict:
     code, payload, _, stderr = run_json(py_cmd("finanzas_recent_receipts.py", "--limit", str(limit), "--json"))
     if code != 0 and not payload.get("whatsapp_reply"):
@@ -295,7 +306,7 @@ def dispatch_text(
         return payload
 
     if RECENT_RECEIPTS_RE.search(text):
-        return run_recent_receipts()
+        return run_recent_receipts(parse_recent_receipts_limit(text))
 
     if should_process_dedupe(text):
         return run_dedupe(text)

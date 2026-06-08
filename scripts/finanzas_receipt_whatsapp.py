@@ -22,6 +22,8 @@ DEFAULT_REGISTRY = _REPO_ROOT / "data/receipts_registry.json"
 
 def format_whatsapp_reply(result: Dict[str, Any]) -> str:
     status = result.get("status")
+    if status == "rejected":
+        return result.get("message") or "Imagen no procesada como boleta."
     if status == "skipped":
         reason = result.get("reason") or "duplicada"
         parsed = result.get("parsed") or {}
@@ -148,6 +150,8 @@ def main() -> None:
         "--json",
     ]
     cmd = [part for part in cmd if part]
+    if (args.text or "").strip():
+        cmd.extend(["--user-caption", args.text.strip()])
     if args.image:
         cmd.extend(["--image", args.image])
     else:

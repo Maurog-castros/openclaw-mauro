@@ -90,7 +90,7 @@ Media: `{CONTAINER_MEDIA}/`
 ## Ultimas boletas procesadas
 
 Preguntas tipo «ultimas boletas», «boletas recientes», «que boletas tengo»:
-`$PY $SCR/finanzas_recent_receipts.py --csv $CSV --limit N --json` -> copia `summary` (default N=10).
+Delegate enruta automaticamente. Si delegate_miss: `$PY $SCR/finanzas_recent_receipts.py --csv $CSV --limit N --json` -> copia `summary`/`whatsapp_reply` **sin inventar ni resumir con LLM**. PROHIBIDO listar boletas desde memoria o tool image.
 
 ## Gastos mes
 
