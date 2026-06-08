@@ -38,10 +38,48 @@ PENDING_MAX_AGE_DAYS = 7
 DEFAULT_PAYMENT_PROFILE = "digital"
 
 BALANCE_TEXT_RE = re.compile(
-    r"(?:saldo|tengo|disponible|cuenta)[^\d]{0,40}(\d{1,3}(?:\.\d{3})+|\d{4,})",
+    r"(?:saldo|tengo|disponible|cuenta)[^\d$]{0,40}(\d{1,3}(?:\.\d{3})+|\d{4,})",
+    re.IGNORECASE,
+)
+# Monto con $ (CLP chileno: $103.699). Debe ir antes de PLAIN_AMOUNT.
+CLP_DOLLAR_RE = re.compile(
+    r"\$\s*(\d{1,3}(?:\.\d{3})+|\d{4,})",
     re.IGNORECASE,
 )
 PLAIN_AMOUNT_RE = re.compile(r"\b(\d{1,3}(?:\.\d{3})+)\b")
+# Bash expande $103.699 como $1 + "03.699" -> queda "03.699" (3699 CLP).
+BASH_TRUNCATED_SALDO_RE = re.compile(
+    r"(?:saldo|disponible|tengo|cuenta|real)[^\d]{0,40}(0\d\.\d{3})\b",
+    re.IGNORECASE,
+)
+
+
+def parse_balance_text(text: str) -> Optional[int]:
+    if not text:
+        return None
+    dollar_match = CLP_DOLLAR_RE.search(text)
+    if dollar_match:
+        amount = parse_clp(dollar_match.group(1))
+        if amount and amount >= 1000:
+            return amount
+    trunc = BASH_TRUNCATED_SALDO_RE.search(text)
+    if trunc:
+        fixed = parse_clp("1" + trunc.group(1))
+        if fixed and fixed >= 10_000:
+            return fixed
+    match = BALANCE_TEXT_RE.search(text)
+    if match:
+        return parse_clp(match.group(1))
+    amounts = [parse_clp(m.group(1)) for m in PLAIN_AMOUNT_RE.finditer(text)]
+    amounts = [a for a in amounts if a and a >= 1000]
+    if len(amounts) == 1:
+        return amounts[0]
+    if amounts:
+        return max(amounts)
+    digits = re.sub(r"\D", "", text)
+    if len(digits) >= 4:
+        return int(digits)
+    return None
 
 
 def load_saldo_state(path: Path) -> Dict[str, Any]:
@@ -61,24 +99,6 @@ def load_saldo_state(path: Path) -> Dict[str, Any]:
 def save_saldo_state(path: Path, state: Dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-
-def parse_balance_text(text: str) -> Optional[int]:
-    if not text:
-        return None
-    match = BALANCE_TEXT_RE.search(text)
-    if match:
-        return parse_clp(match.group(1))
-    amounts = [parse_clp(m.group(1)) for m in PLAIN_AMOUNT_RE.finditer(text)]
-    amounts = [a for a in amounts if a and a >= 1000]
-    if len(amounts) == 1:
-        return amounts[0]
-    if amounts:
-        return max(amounts)
-    digits = re.sub(r"\D", "", text)
-    if len(digits) >= 4:
-        return int(digits)
-    return None
 
 
 def last_cartola_balance(cartola_csv: Path) -> Optional[Dict[str, Any]]:

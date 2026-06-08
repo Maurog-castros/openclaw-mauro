@@ -134,8 +134,10 @@ def run_recent_receipts(limit: int = 10) -> dict:
     return payload
 
 
-def run_saldo(text: str, image_path: str | None) -> dict:
+def run_saldo(text: str, image_path: str | None, amount: int | None = None) -> dict:
     cmd = py_cmd("finanzas_saldo_whatsapp.py", "--text", text, "--json")
+    if amount is not None and amount > 0:
+        cmd.extend(["--amount", str(amount)])
     if image_path:
         cmd.extend(["--image", image_path])
     code, payload, stdout, stderr = run_json(cmd, timeout=120)
@@ -189,6 +191,7 @@ def strip_fin_prefix(text: str) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Delegate finanzas WhatsApp.")
     parser.add_argument("--text", default="")
+    parser.add_argument("--amount", type=int, default=0, help="Monto CLP entero (evita $ en --text).")
     parser.add_argument("--has-media", action="store_true", help="Mensaje trae imagen adjunta.")
     parser.add_argument("--image", help="Ruta explicita inbound.")
     parser.add_argument("--source", default="whatsapp_foto")
@@ -226,8 +229,14 @@ def main() -> None:
         print(json.dumps(result, ensure_ascii=False, indent=2) if args.json else result.get("whatsapp_reply", ""))
         return
 
+    if args.amount and args.amount > 0:
+        result = run_saldo(text, image_path, amount=int(args.amount))
+        print(json.dumps(result, ensure_ascii=False, indent=2) if args.json else result.get("whatsapp_reply", ""))
+        return
+
     if should_process_saldo(text, args.has_media, image_path):
-        result = run_saldo(text, image_path)
+        amount = int(args.amount) if args.amount and args.amount > 0 else None
+        result = run_saldo(text, image_path, amount=amount)
         print(json.dumps(result, ensure_ascii=False, indent=2) if args.json else result.get("whatsapp_reply", ""))
         return
 

@@ -68,6 +68,8 @@ PROHIBIDO llamar finanzas_receipt_whatsapp o finanzas_saldo_whatsapp directo sal
 
 Palabras: saldo, santander, disponible, «mi saldo es», «este es mi saldo», captura app banco.
 Delegate enruta a saldo. Respuesta esperada: «Saldo Santander actualizado: $X» (confirmacion simple).
+**Montos con $ en bash se corrompen** ($103 -> $1). Usa `--amount` entero sin $ ni puntos:
+`{CONTAINER_RUN_PY} {CONTAINER_SCRIPTS}/finanzas_delegate.py --text "mi saldo" --amount 103699 --json`
 PROHIBIDO receipt_vision / finanzas_receipt si hay saldo, monto en texto, o screenshot app Santander.
 
 ## Boletas (foto de ticket/compra)

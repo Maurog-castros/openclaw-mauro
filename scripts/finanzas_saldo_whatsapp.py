@@ -71,6 +71,7 @@ def run_balance_ocr(image_path: Path) -> Dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Saldo Santander — wrapper WhatsApp.")
     parser.add_argument("--text", default="", help="Mensaje del usuario.")
+    parser.add_argument("--amount", type=int, default=0, help="Monto CLP entero (sin $ ni puntos).")
     parser.add_argument("--image", help="Screenshot app Santander (opcional).")
     parser.add_argument("--reply-only", action="store_true")
     parser.add_argument("--json", action="store_true")
@@ -78,10 +79,11 @@ def main() -> None:
 
     text = args.text or ""
     has_image = bool(args.image)
-    mode = infer_mode(text, has_image=has_image)
-    text_amount = parse_balance_text(text)
+    explicit_amount = int(args.amount) if args.amount and args.amount > 0 else None
+    text_amount = explicit_amount or parse_balance_text(text)
+    mode = "set-actual" if text_amount else infer_mode(text, has_image=has_image)
 
-    if mode == "set-actual-image" and args.image:
+    if mode == "set-actual-image" and args.image and not explicit_amount and not parse_balance_text(text):
         ocr = run_balance_ocr(Path(args.image))
         amount = text_amount or int(ocr.get("balance_clp") or 0) or None
         if amount is None:
@@ -96,8 +98,13 @@ def main() -> None:
             if as_of and not text_amount:
                 cmd.extend(["--as-of-date", as_of])
             result = run_saldo_cmd(cmd)
-    elif mode == "set-actual":
-        result = run_saldo_cmd(["set-actual", "--text", text, "--source", "user_manual"])
+    elif mode == "set-actual" or text_amount:
+        if text_amount:
+            result = run_saldo_cmd(
+                ["set-actual", "--amount", str(text_amount), "--source", "user_manual"]
+            )
+        else:
+            result = run_saldo_cmd(["set-actual", "--text", text, "--source", "user_manual"])
     else:
         result = run_saldo_cmd(["report", "--text", text] if text_amount else ["report"])
 
