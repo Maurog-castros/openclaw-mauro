@@ -18,8 +18,10 @@ from support_common import (
     REPO_ROOT,
     gateway_healthy,
     git_commit_push,
+    live_health,
     load_findings,
     now_iso,
+    reopen_failed_findings,
     run_cmd,
     update_finding,
     whatsapp_pending_count,
@@ -52,11 +54,11 @@ def remediate_restart_gateway() -> str:
     return (out or err or f"exit={code}")[:400]
 
 
-def pick_open_findings(categories: List[str] | None = None) -> List[dict]:
+def pick_fixable_findings(categories: List[str] | None = None) -> List[dict]:
     rows = load_findings()
     out = []
     for row in rows:
-        if row.get("status") != "open":
+        if row.get("status") not in {"open", "failed"}:
             continue
         cat = row.get("category") or ""
         if categories and cat not in categories:
@@ -64,6 +66,16 @@ def pick_open_findings(categories: List[str] | None = None) -> List[dict]:
         if cat in AUTO_FIX_CATEGORIES:
             out.append(row)
     return out
+
+
+def remediation_verified() -> bool:
+    health = live_health()
+    return (
+        health.get("gateway_healthy")
+        and int(health.get("whatsapp_pending") or 0) == 0
+        and not health.get("fin_session_running")
+        and int(health.get("fin_failed_deliveries") or 0) == 0
+    )
 
 
 def remediate_finding(finding_id: str, *, do_commit: bool) -> dict:
@@ -89,7 +101,7 @@ def _apply_fix(row: dict, *, do_commit: bool) -> dict:
             "message": f"Sin playbook auto para {cat}",
         }
 
-    verified = gateway_healthy() and whatsapp_pending_count() == 0
+    verified = remediation_verified()
     commit_info = {}
     if do_commit and verified:
         commit_info = git_commit_push(f"fix(supp): {row.get('summary', cat)[:60]}")
@@ -105,10 +117,13 @@ def _apply_fix(row: dict, *, do_commit: bool) -> dict:
         },
     )
 
+    health = live_health()
     summary = (
         f"Fix {row.get('category')}: {'OK' if verified else 'parcial'}\n"
-        f"Gateway: {'healthy' if gateway_healthy() else 'revisar'}\n"
-        f"Pending WA: {whatsapp_pending_count()}\n"
+        f"Gateway: {'healthy' if health.get('gateway_healthy') else 'revisar'}\n"
+        f"Pending WA: {health.get('whatsapp_pending', 0)}\n"
+        f"Sesion fin: {health.get('fin_session', {}).get('status', '?')}\n"
+        f"Entregas failed fin: {health.get('fin_failed_deliveries', 0)}\n"
         f"Commit: {commit_info.get('commit', 'ninguno')}"
     )
     return {
@@ -121,10 +136,50 @@ def _apply_fix(row: dict, *, do_commit: bool) -> dict:
     }
 
 
+def remediate_live(*, do_commit: bool) -> dict:
+    """Ejecuta playbook aunque el CSV no tenga filas open (estado vivo)."""
+    health = live_health()
+    if not health.get("needs_remediation"):
+        return {"status": "skip", "verified": True, "message": "Sistema fin OK en vivo."}
+
+    actions: List[str] = []
+    if not health.get("gateway_healthy"):
+        actions.append(remediate_restart_gateway())
+    if (
+        health.get("fin_session_running")
+        or int(health.get("whatsapp_pending") or 0) > 0
+        or int(health.get("fin_failed_deliveries") or 0) > 0
+    ):
+        actions.append(remediate_clear_whatsapp_and_reset())
+
+    verified = remediation_verified()
+    health = live_health()
+    summary = (
+        "Auto-fix (estado vivo):\n"
+        f"Gateway: {'healthy' if health.get('gateway_healthy') else 'revisar'}\n"
+        f"Pending WA: {health.get('whatsapp_pending', 0)}\n"
+        f"Sesion fin: {health.get('fin_session', {}).get('status', '?')}\n"
+        f"Entregas failed fin: {health.get('fin_failed_deliveries', 0)}\n"
+        f"Resultado: {'OK' if verified else 'parcial — reintenta o revisa logs'}"
+    )
+    return {
+        "status": "ok" if verified else "partial",
+        "verified": verified,
+        "actions": actions,
+        "summary": summary,
+        "whatsapp_reply": summary,
+    }
+
+
 def remediate_auto(*, do_commit: bool) -> dict:
-    targets = pick_open_findings()
+    reopen_failed_findings()
+    health = live_health()
+    if health.get("needs_remediation"):
+        return remediate_live(do_commit=do_commit)
+
+    targets = pick_fixable_findings()
     if not targets:
-        msg = "Sin hallazgos abiertos con playbook auto."
+        msg = "Sistema fin OK. Sin hallazgos pendientes en CSV."
         return {"status": "ok", "fixed": 0, "summary": msg, "whatsapp_reply": msg}
 
     results = [_apply_fix(row, do_commit=do_commit) for row in targets[:3]]

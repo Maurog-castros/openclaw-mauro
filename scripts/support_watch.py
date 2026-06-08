@@ -12,6 +12,7 @@ _SCRIPTS = Path(__file__).resolve().parent
 if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
 
+from support_common import live_health
 from support_remediate import remediate_auto
 from support_scan_logs import scan
 
@@ -24,7 +25,11 @@ def main() -> None:
 
     scan_result = scan()
     fix_result = {"status": "skip", "fixed": 0}
-    if scan_result.get("open_findings", 0) > 0 or scan_result.get("new_findings", 0) > 0:
+    if (
+        scan_result.get("open_findings", 0) > 0
+        or scan_result.get("new_findings", 0) > 0
+        or live_health().get("needs_remediation")
+    ):
         fix_result = remediate_auto(do_commit=not args.no_commit)
 
     payload = {

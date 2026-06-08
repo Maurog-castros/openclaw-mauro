@@ -17,10 +17,13 @@ from support_common import (
     append_finding,
     docker_exec_tail_log,
     docker_logs,
+    fin_failed_delivery_count,
     fin_main_session_status,
     gateway_healthy,
+    live_health,
     load_findings,
     parse_log_findings,
+    reopen_failed_findings,
     whatsapp_pending_count,
 )
 
@@ -64,15 +67,22 @@ def scan() -> dict:
             }
         )
 
+    if detected:
+        reopen_failed_findings()
     saved = [append_finding(item) for item in detected]
-    open_count = sum(1 for r in load_findings() if r.get("status") == "open")
+    open_count = sum(1 for r in load_findings() if r.get("status") in {"open", "failed"})
+    health = live_health()
 
     lines = [
         f"Scan: {len(saved)} hallazgo(s) nuevos/actualizados",
-        f"Abiertos en CSV: {open_count}",
-        f"Gateway: {'healthy' if gateway_healthy() else 'NO healthy'}",
-        f"WhatsApp pending: {pending}",
+        f"Abiertos/reintentables en CSV: {open_count}",
+        f"Gateway: {'healthy' if health.get('gateway_healthy') else 'NO healthy'}",
+        f"WhatsApp pending: {health.get('whatsapp_pending', pending)}",
+        f"Sesion fin: {health.get('fin_session', {}).get('status', '?')}",
+        f"Entregas failed fin: {health.get('fin_failed_deliveries', 0)}",
     ]
+    if health.get("needs_remediation"):
+        lines.append("Accion sugerida: /supp fix o menu 2 (Auto-fix)")
     for row in saved[:5]:
         lines.append(f"• [{row.get('severity')}] {row.get('category')}: {row.get('summary')}")
 

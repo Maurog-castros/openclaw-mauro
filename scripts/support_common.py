@@ -41,6 +41,8 @@ AUTO_FIX_CATEGORIES = frozenset(
     {"session_stuck", "context_overflow", "whatsapp_pending", "gateway_unhealthy"}
 )
 
+FIXABLE_STATUSES = frozenset({"open", "failed"})
+
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
@@ -110,6 +112,46 @@ def whatsapp_pending_count() -> int:
         con.close()
 
 
+def fin_failed_delivery_count() -> int:
+    if not DEFAULT_SQLITE.exists():
+        return 0
+    import sqlite3
+
+    con = sqlite3.connect(DEFAULT_SQLITE)
+    try:
+        cur = con.cursor()
+        cur.execute(
+            "SELECT count(*) FROM delivery_queue_entries "
+            "WHERE status='failed' AND (session_key LIKE 'agent:fin%' OR session_key LIKE 'agent:finanzas%')"
+        )
+        row = cur.fetchone()
+        return int(row[0] or 0) if row else 0
+    finally:
+        con.close()
+
+
+def live_health() -> Dict[str, Any]:
+    sess = fin_main_session_status()
+    pending = whatsapp_pending_count()
+    failed_del = fin_failed_delivery_count()
+    healthy = gateway_healthy()
+    session_running = (sess.get("status") or "") == "running"
+    needs_fix = (
+        not healthy
+        or pending > 0
+        or session_running
+        or failed_del > 0
+    )
+    return {
+        "gateway_healthy": healthy,
+        "whatsapp_pending": pending,
+        "fin_session": sess,
+        "fin_session_running": session_running,
+        "fin_failed_deliveries": failed_del,
+        "needs_remediation": needs_fix,
+    }
+
+
 def fin_main_session_status() -> Dict[str, Any]:
     if not DEFAULT_SESSIONS_JSON.exists():
         return {}
@@ -157,7 +199,7 @@ def append_finding(row: Dict[str, Any], path: Path = DEFAULT_FINDINGS_CSV) -> Di
     existing = load_findings(path)
     fp = finding_fingerprint(entry["category"], entry["summary"])
     for old in existing:
-        if old.get("status") == "open" and finding_fingerprint(
+        if old.get("status") in FIXABLE_STATUSES and finding_fingerprint(
             old.get("category", ""), old.get("summary", "")
         ) == fp:
             return old
@@ -165,6 +207,28 @@ def append_finding(row: Dict[str, Any], path: Path = DEFAULT_FINDINGS_CSV) -> Di
     with path.open("a", newline="", encoding="utf-8") as handle:
         csv.DictWriter(handle, fieldnames=FINDINGS_COLUMNS).writerow(entry)
     return entry
+
+
+def reopen_failed_findings(categories: Optional[List[str]] = None, path: Path = DEFAULT_FINDINGS_CSV) -> int:
+    """Marca failed -> open para permitir reintento de auto-fix."""
+    rows = load_findings(path)
+    changed = 0
+    for row in rows:
+        if row.get("status") != "failed":
+            continue
+        cat = row.get("category") or ""
+        if categories and cat not in categories:
+            continue
+        if cat not in AUTO_FIX_CATEGORIES:
+            continue
+        row["status"] = "open"
+        changed += 1
+    if changed:
+        with path.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.DictWriter(handle, fieldnames=FINDINGS_COLUMNS)
+            writer.writeheader()
+            writer.writerows(rows)
+    return changed
 
 
 def update_finding(

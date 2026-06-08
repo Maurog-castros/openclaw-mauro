@@ -18,7 +18,10 @@ SCR = ROOT / "scripts"
 if str(SCR) not in sys.path:
     sys.path.insert(0, str(SCR))
 
+from support_common import live_health
 from whatsapp_menu import finish_reply, resolve_menu_choice
+
+LOGS_RE = re.compile(r"\b(logs?|ultim(?:os|as)|escanear|revisar)\b", re.I)
 
 RUN_PY = SCR / "run-finanzas-py.sh"
 SUPP_PREFIX_RE = re.compile(r"^\s*/supp\b", re.I)
@@ -43,7 +46,19 @@ def strip_prefix(text: str) -> str:
 
 
 def cmd_status() -> dict:
-    scan = run_json(py_cmd("support_scan_logs.py", "--json"))
+    health = live_health()
+    lines = [
+        "🛠 *Supp — status*",
+        f"Gateway: {'OK' if health.get('gateway_healthy') else 'NO healthy'}",
+        f"WhatsApp pending: {health.get('whatsapp_pending', 0)}",
+        f"Sesion /fin: {health.get('fin_session', {}).get('status', '?')}",
+        f"Entregas failed fin: {health.get('fin_failed_deliveries', 0)}",
+    ]
+    if health.get("needs_remediation"):
+        lines.append("*Sistema fin necesita auto-fix (menu 2)*")
+    else:
+        lines.append("Sistema fin OK en vivo.")
+
     rows = []
     try:
         import csv
@@ -54,15 +69,15 @@ def cmd_status() -> dict:
                 rows = list(csv.DictReader(f))[-5:]
     except Exception:
         pass
-
-    lines = ["🛠 *Supp — status*", scan.get("summary", "scan ok")]
     if rows:
         lines.append("")
-        lines.append("*Ultimos hallazgos:*")
+        lines.append("*Historial CSV (ultimos intentos):*")
         for r in reversed(rows):
+            st = r.get("status") or "?"
+            note = " (reintentable con menu 2)" if st == "failed" else ""
             lines.append(
-                f"• {r.get('detected_at', '')[:16]} [{r.get('status')}] "
-                f"{r.get('category')}: {r.get('summary', '')[:50]}"
+                f"• {r.get('detected_at', '')[:16]} [{st}]{note} "
+                f"{r.get('category')}: {r.get('summary', '')[:45]}"
             )
     summary = "\n".join(lines)
     return {"status": "ok", "summary": summary, "whatsapp_reply": summary}
@@ -73,14 +88,17 @@ def dispatch_supp(text: str) -> dict:
 
     if not text or lower in {"status", "estado", "help", "ayuda"}:
         return cmd_status()
-    if lower in {"scan", "escanear", "revisar", "logs"}:
+    if lower in {"scan", "escanear", "revisar", "logs"} or LOGS_RE.search(text):
         result = run_json(py_cmd("support_scan_logs.py", "--json"))
         result.setdefault("whatsapp_reply", result.get("summary", ""))
         return result
-    if lower.split()[0] in {"fix", "arregla", "remedia", "soluciona"}:
-        result = run_json(py_cmd("support_remediate.py", "--auto", "--json"))
-        result.setdefault("whatsapp_reply", result.get("summary", ""))
-        return result
+    if lower.split()[0] in {"fix", "arregla", "remedia", "soluciona"} or lower == "fix":
+        scan = run_json(py_cmd("support_scan_logs.py", "--json"))
+        fix = run_json(py_cmd("support_remediate.py", "--auto", "--json"))
+        reply = fix.get("whatsapp_reply") or fix.get("summary", "")
+        if scan.get("summary"):
+            reply = f"{scan.get('summary', '')}\n\n───\n{reply}"
+        return {"status": fix.get("status", "ok"), "whatsapp_reply": reply}
     if lower.startswith("ultimos"):
         return cmd_status()
 
