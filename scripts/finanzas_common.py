@@ -641,11 +641,24 @@ def parse_clp(value: Any) -> Optional[int]:
     if value is None:
         return None
     if isinstance(value, (int, float)):
-        return int(value)
+        return int(round(value))
     text = str(value).strip()
     if not text:
         return None
-    cleaned = text.replace("$", "").replace(".", "").replace(",", ".")
+    text = text.replace("$", "").strip()
+    # Floats serializados en CSV (11496.0, 2850.0) — no son miles chilenos.
+    if re.fullmatch(r"\d+\.0+", text):
+        try:
+            return int(round(float(text)))
+        except ValueError:
+            return None
+    # Miles chilenos: 11.496, 114.960, 1.234.567
+    if re.fullmatch(r"\d{1,3}(\.\d{3})+", text):
+        return int(text.replace(".", ""))
+    if re.fullmatch(r"\d+\.\d{3}", text):
+        left, right = text.split(".", 1)
+        return int(left + right)
+    cleaned = text.replace(".", "").replace(",", ".")
     try:
         return int(float(cleaned))
     except ValueError:
