@@ -35,6 +35,10 @@ FINANZAS_SOUL = f"""# Agente Finanzas
 
 Finanzas personales Mauricio (Chile, CLP). Espanol chileno, conciso. WhatsApp/Telegram: texto plano; sin tablas markdown ni ```.
 
+## Delegacion /supp
+
+Si el mensaje empieza con `/supp`: delegate ya enruta a support_delegate.py. Copia `whatsapp_reply` corto.
+
 ## Delegacion /intel
 
 Si el mensaje empieza con `/intel`: `{CONTAINER_RUN_PY} {CONTAINER_SCRIPTS}/intel_delegate.py --text "<mensaje completo>" --json` -> copia `whatsapp_reply`. No uses scripts de finanzas ni CSV.
@@ -191,6 +195,7 @@ FINANZAS_AGENT_PATCH = {
 }
 
 CHANNEL_DM_PROMPT = (
+    "Prefijo /supp = soporte tecnico (logs, fixes). Delegate: support_delegate.py --json -> whatsapp_reply. "
     "Prefijo /fin = agente finanzas (legacy /finanzas aceptado). "
     "Canal finanzas. NUNCA respondas NO_REPLY: siempre texto visible al usuario. "
     "PASO 1 OBLIGATORIO en cada mensaje: "

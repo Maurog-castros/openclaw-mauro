@@ -1,0 +1,85 @@
+# Python — entornos virtuales y paquetes instalados
+.venv/
+.venv-*/
+.venv-finanzas/
+.venv-finanzas-docker/
+.venv-linkedin-intel/
+.venv-lider/
+venv/
+ENV/
+env/
+.Python
+pip-wheel-metadata/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Python — bytecode / caché
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node / frontends
+node_modules/
+.npm/
+.pnpm-store/
+yarn.lock.bak
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Playwright (CLI local + browsers descargados)
+.playwright/
+.playwright-cli/
+playwright/.cache/
+**/ms-playwright/
+
+# Build / logs generados por herramientas
+dist/
+build/
+*.log
+logs/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Runtime OpenClaw (sesiones, sqlite, symlinks locales — no versionar)
+data/
+!data/support_findings.csv
+
+# Caché graphify / artefactos generados
+graphify-out/cache/
+
+# Backups locales (multi-extensión: foo.py.bak-20260606)
+backups/
+*.py.bak*
+*.sh.bak*
+*.json.bak*
+Dockerfile.bak*
+**/*.bak*
+tmp-fix/
+tmp-fix2/
+tmp-fix3/
+tmp-deploy*/
+tmp-ig/
+
+# Clones locales de repos
+repos/
+
+# Cursor (reglas sí; estado local no)
+.cursor/projects/
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+client_secret*.json
+*_token.json
+gmail_credentials.json
+gmail_token.json

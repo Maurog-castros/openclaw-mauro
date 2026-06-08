@@ -22,6 +22,7 @@ INBOUND_CANDIDATES = [
     Path("/home/mauro/openclaw-mauro/data/config/media/inbound"),
 ]
 
+SUPP_RE = re.compile(r"^\s*/supp\b", re.I)
 INTEL_RE = re.compile(r"^\s*/intel\b", re.I)
 CONTENT_RE = re.compile(r"^\s*/content\b|instagram\.com/(?:p|reel)/", re.I)
 RECENT_RECEIPTS_RE = re.compile(
@@ -234,6 +235,21 @@ def main() -> None:
     if SKIP_CMD_RE.search(text):
         payload = {"status": "skip", "agent": "fin", "whatsapp_reply": ""}
         print(json.dumps(payload, ensure_ascii=False, indent=2) if args.json else "")
+        return
+
+    if SUPP_RE.search(args.text or ""):
+        code, payload, stdout, stderr = run_json(
+            py_cmd("support_delegate.py", "--text", args.text or "", "--json")
+        )
+        if code != 0 and not payload.get("whatsapp_reply"):
+            payload = {
+                "status": "error",
+                "agent": "supp",
+                "whatsapp_reply": "Supp no respondio. Intenta /supp status",
+                "stderr": stderr[-800:],
+            }
+        payload.setdefault("agent", "supp")
+        print(json.dumps(payload, ensure_ascii=False, indent=2) if args.json else payload.get("whatsapp_reply", ""))
         return
 
     if INTEL_RE.search(text):

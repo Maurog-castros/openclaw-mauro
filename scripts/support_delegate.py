@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""Delegate /supp — soporte tecnico OpenClaw."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path("/home/node/openclaw-mauro")
+if not ROOT.exists():
+    ROOT = Path(__file__).resolve().parent.parent
+
+SCR = ROOT / "scripts"
+RUN_PY = SCR / "run-finanzas-py.sh"
+
+SUPP_PREFIX_RE = re.compile(r"^\s*/supp\b\s*", re.I)
+
+
+def py_cmd(script: str, *args: str) -> list[str]:
+    return [str(RUN_PY), str(SCR / script), *args]
+
+
+def run_json(cmd: list[str], timeout: int = 180) -> dict:
+    proc = subprocess.run(cmd, cwd=str(ROOT), text=True, capture_output=True, timeout=timeout, check=False)
+    if proc.stdout.strip():
+        try:
+            return json.loads(proc.stdout)
+        except json.JSONDecodeError:
+            return {"whatsapp_reply": proc.stdout.strip()}
+    return {"status": "error", "message": (proc.stderr or proc.stdout)[:800]}
+
+
+def strip_prefix(text: str) -> str:
+    return SUPP_PREFIX_RE.sub("", text or "").strip()
+
+
+def cmd_status() -> dict:
+    scan = run_json(py_cmd("support_scan_logs.py", "--json"))
+    rows = []
+    try:
+        import csv
+
+        csv_path = ROOT / "data/support_findings.csv"
+        if csv_path.exists():
+            with csv_path.open(encoding="utf-8") as f:
+                rows = list(csv.DictReader(f))[-5:]
+    except Exception:
+        pass
+
+    lines = ["Supp — status", scan.get("summary", "scan ok")]
+    if rows:
+        lines.append("")
+        lines.append("Ultimos CSV:")
+        for r in reversed(rows):
+            lines.append(
+                f"• {r.get('detected_at', '')[:16]} [{r.get('status')}] "
+                f"{r.get('category')}: {r.get('summary', '')[:50]}"
+            )
+    summary = "\n".join(lines)
+    return {"status": "ok", "summary": summary, "whatsapp_reply": summary}
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Delegate /supp")
+    parser.add_argument("--text", default="")
+    parser.add_argument("--json", action="store_true")
+    args = parser.parse_args()
+
+    text = strip_prefix(args.text)
+    lower = text.lower()
+
+    if not text or lower in {"status", "estado", "help", "ayuda"}:
+        result = cmd_status()
+    elif lower in {"scan", "escanear", "revisar", "logs"}:
+        result = run_json(py_cmd("support_scan_logs.py", "--json"))
+        result.setdefault("whatsapp_reply", result.get("summary", ""))
+    elif lower.split()[0] in {"fix", "arregla", "remedia", "soluciona"}:
+        result = run_json(py_cmd("support_remediate.py", "--auto", "--json"))
+        result.setdefault("whatsapp_reply", result.get("summary", ""))
+    elif lower.startswith("ultimos"):
+        result = cmd_status()
+    else:
+        result = run_json(py_cmd("support_scan_logs.py", "--json"))
+        if result.get("open_findings", 0) > 0:
+            fix = run_json(py_cmd("support_remediate.py", "--auto", "--json"))
+            result = {
+                "status": "ok",
+                "whatsapp_reply": (
+                    f"Supp\n{result.get('summary', '')}\n\n"
+                    f"---\n{fix.get('whatsapp_reply', fix.get('summary', ''))}"
+                ),
+            }
+        else:
+            result["whatsapp_reply"] = f"Supp\n{result.get('summary', 'Todo OK')}"
+
+    result.setdefault("agent", "supp")
+    if args.json:
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    else:
+        print(result.get("whatsapp_reply", ""))
+
+
+if __name__ == "__main__":
+    main()
