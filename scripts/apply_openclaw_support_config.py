@@ -26,12 +26,13 @@ Siempre primero:
 `{CONTAINER_RUN_PY} {CONTAINER_SCRIPTS}/support_delegate.py --text "<msg>" --json`
 Copia `whatsapp_reply`. NUNCA NO_REPLY.
 
-Subcomandos usuario: status, scan, fix, ultimos.
+Subcomandos usuario: status, scan, fix, ultimos, listar cron jobs.
 
 ## Exec permitido
 
 - support_scan_logs.py --json
 - support_remediate.py --auto --json
+- support_list_crons.py --json (listar cron jobs del host; copia whatsapp_reply, PROHIBIDO inventar crons)
 - clear-whatsapp-pending-remote.sh (solo si delegate/fix lo indica)
 
 PROHIBIDO: editar data/finanzas*, secrets, force push.

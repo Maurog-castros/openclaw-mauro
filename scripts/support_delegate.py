@@ -22,6 +22,8 @@ from support_common import live_health
 from whatsapp_menu import finish_reply, resolve_menu_choice
 
 LOGS_RE = re.compile(r"\b(logs?|ultim(?:os|as)|escanear|revisar)\b", re.I)
+ESTADO_RE = re.compile(r"\b(estado\s+sistema|estado\s+del\s+sistema|system\s+status)\b", re.I)
+CRON_RE = re.compile(r"\b(cron\s*jobs?|crons?|listar\s+cron|tareas\s+programad)\b", re.I)
 
 RUN_PY = SCR / "run-finanzas-py.sh"
 SUPP_PREFIX_RE = re.compile(r"^\s*/supp\b", re.I)
@@ -86,8 +88,12 @@ def cmd_status() -> dict:
 def dispatch_supp(text: str) -> dict:
     lower = text.lower()
 
-    if not text or lower in {"status", "estado", "help", "ayuda"}:
+    if not text or lower in {"status", "estado", "help", "ayuda"} or ESTADO_RE.search(text):
         return cmd_status()
+    if lower in {"cron", "crons", "cronjobs"} or CRON_RE.search(text):
+        result = run_json(py_cmd("support_list_crons.py", "--json"))
+        result.setdefault("whatsapp_reply", result.get("summary", ""))
+        return result
     if lower in {"scan", "escanear", "revisar", "logs"} or LOGS_RE.search(text):
         result = run_json(py_cmd("support_scan_logs.py", "--json"))
         result.setdefault("whatsapp_reply", result.get("summary", ""))
