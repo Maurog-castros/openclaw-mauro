@@ -1,0 +1,12 @@
+{
+  "notes": {
+    "EJEMPLO_MOVEMENT_ID_24_CHARS": {
+      "note": "compra de almuerzo preparado",
+      "updated_at": "2026-06-03T12:00:00",
+      "movement_date": "2026-06-02",
+      "amount_clp": "5500",
+      "label": "Transferencia a Yanara (Banco Estado)",
+      "movement_type": "transferencia_salida"
+    }
+  }
+}

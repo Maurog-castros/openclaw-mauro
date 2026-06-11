@@ -1,0 +1,15 @@
+{
+  "_comment": "Solo claves validas en OpenClaw 2026.5.x. Mas campos rompen el gateway.",
+  "agents": {
+    "defaults": {
+      "compaction": {
+        "reserveTokensFloor": 8000
+      }
+    }
+  },
+  "session": {
+    "reset": {
+      "idleMinutes": 480
+    }
+  }
+}

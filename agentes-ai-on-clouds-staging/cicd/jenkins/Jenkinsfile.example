@@ -1,0 +1,39 @@
+// Pipeline de referencia — adaptar a tu Jenkins (jenkins-devops en legacy)
+pipeline {
+  agent any
+  environment {
+    REGISTRY = 'REPLACE_REGISTRY'
+    IMAGE_OPENCLAW = "${REGISTRY}/openclaw-with-ssh"
+  }
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+    stage('Sync legacy (optional)') {
+      when { expression { params.SYNC_LEGACY == true } }
+      steps {
+        sh './scripts/sync-from-openclaw-mauro.sh'
+      }
+    }
+    stage('Terraform plan') {
+      steps {
+        dir('infra/terraform/environments/dev/aws') {
+          sh 'terraform init -backend=false'
+          sh 'terraform validate'
+        }
+      }
+    }
+    stage('Build OpenClaw image') {
+      steps {
+        dir('apps/openclaw/docker/openclaw-with-ssh') {
+          sh "docker build -t ${IMAGE_OPENCLAW}:${BUILD_NUMBER} ."
+        }
+      }
+    }
+    stage('Kustomize diff') {
+      steps {
+        sh 'kubectl kustomize infra/k8s/overlays/dev | head -100'
+      }
+    }
+  }
+}

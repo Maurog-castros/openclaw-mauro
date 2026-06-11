@@ -1,0 +1,46 @@
+{
+  "_comment": "Fragmento para pegar en data/config/openclaw.json del servidor OpenClaw",
+  "agents": {
+    "list": [
+      {
+        "id": "finanzas",
+        "name": "Finanzas",
+        "description": "Gastos, boletas, transferencias y reportes mensuales",
+        "workspace": "/home/mauro/openclaw-mauro",
+        "model": {
+          "primary": "remote-lm/openclaw-remote",
+          "fallbacks": [
+            "remote-lm/openclaw-remote-vision",
+            "remote-lm/openclaw-remote-coder"
+          ]
+        },
+        "systemPrompt": "Eres el agente finanzas de Mauricio. Cuando recibas una FOTO de boleta: 1) guarda la imagen en data/inbox/boletas/ si aun no esta, 2) ejecuta: python scripts/receipt_vision_agent.py --image <ruta> --source telegram_foto --source-ref <message_id> --merge, 3) responde con comercio, fecha, total e items detectados. Para preguntas de gastos lee data/finanzas_movimientos.csv. Responde en espanol, conciso."
+      }
+    ]
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "TELEGRAM_BOT_TOKEN",
+      "defaultAgent": "main",
+      "agentByKind": {
+        "photo": "finanzas",
+        "document": "finanzas"
+      },
+      "mediaDownloadDir": "/home/mauro/openclaw-mauro/data/inbox/boletas"
+    }
+  },
+  "models": {
+    "providers": {
+      "remote-lm": {
+        "models": [
+          {
+            "id": "openclaw-remote-vision",
+            "name": "qwen3-vl-30b-a3b-instruct vision via Iamiko",
+            "input": ["text", "image"]
+          }
+        ]
+      }
+    }
+  }
+}

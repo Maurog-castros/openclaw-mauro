@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openclaw-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openclaw-gateway
+  template:
+    metadata:
+      labels:
+        app: openclaw-gateway
+    spec:
+      containers:
+        - name: gateway
+          # Build & push desde apps/openclaw/docker/openclaw-with-ssh/
+          image: REPLACE_REGISTRY/openclaw-with-ssh:latest
+          ports:
+            - containerPort: 18789
+          envFrom:
+            - secretRef:
+                name: openclaw-secrets
+          volumeMounts:
+            - name: data
+              mountPath: /home/node/openclaw-mauro/data
+            - name: scripts
+              mountPath: /home/node/openclaw-mauro/scripts
+              readOnly: true
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              memory: 4Gi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: openclaw-data
+        - name: scripts
+          configMap:
+            name: openclaw-scripts
+            optional: true

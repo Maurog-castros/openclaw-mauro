@@ -1,0 +1,37 @@
+model_list:
+  - model_name: openclaw-remote
+    litellm_params:
+      model: openai/qwen3-coder-next
+      api_base: https://ia.iamiko.cl/v1
+      api_key: os.environ/OPENAI_API_KEY
+      timeout: 45
+
+  - model_name: openclaw-remote-coder
+    litellm_params:
+      model: openai/qwen3-coder-next
+      api_base: https://ia.iamiko.cl/v1
+      api_key: os.environ/OPENAI_API_KEY
+      timeout: 45
+
+  - model_name: openclaw-remote-vision
+    litellm_params:
+      model: openai/qwen3-vl-30b-a3b-instruct
+      api_base: https://ia.iamiko.cl/v1
+      api_key: os.environ/OPENAI_API_KEY
+      timeout: 45
+
+  - model_name: openclaw-remote-embed
+    litellm_params:
+      model: openai/text-embedding-nomic-embed-text-v1.5
+      api_base: https://ia.iamiko.cl/v1
+      api_key: os.environ/OPENAI_API_KEY
+      timeout: 45
+
+litellm_settings:
+  num_retries: 1
+  request_timeout: 45
+  fallbacks:
+    - openclaw-remote: [openclaw-remote-coder, openclaw-remote-vision]
+    - openclaw-remote-coder: [openclaw-remote]
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY

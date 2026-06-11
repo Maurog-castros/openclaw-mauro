@@ -1,0 +1,69 @@
+{
+  "default_cv": "cv_obrero_general.pdf",
+  "rules": [
+    {
+      "name": "soldadura",
+      "keywords_any": [
+        "soldador",
+        "soldadura",
+        "mig",
+        "tig",
+        "arco",
+        "electrodo",
+        "estructura metalica",
+        "estructura metálica",
+        "metal-mecanica",
+        "metal-mecánica"
+      ],
+      "cv": "cv_soldador.pdf"
+    },
+    {
+      "name": "construccion",
+      "keywords_any": [
+        "construccion",
+        "construcción",
+        "obra",
+        "faena",
+        "maestro",
+        "oficial",
+        "albañil",
+        "terminaciones",
+        "civil",
+        "montaje"
+      ],
+      "cv": "cv_construccion.pdf"
+    },
+    {
+      "name": "reparaciones",
+      "keywords_any": [
+        "reparacion",
+        "reparación",
+        "reparaciones",
+        "mantencion",
+        "mantención",
+        "mantenimiento",
+        "servicio tecnico",
+        "servicio técnico",
+        "herreria",
+        "herrería",
+        "taller",
+        "averia",
+        "avería"
+      ],
+      "cv": "cv_reparaciones.pdf"
+    },
+    {
+      "name": "industrial",
+      "keywords_any": [
+        "industrial",
+        "planta",
+        "mineria",
+        "minería",
+        "operador",
+        "maquinaria",
+        "equipos"
+      ],
+      "cv": "cv_industrial.pdf"
+    }
+  ]
+}

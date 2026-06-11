@@ -1,0 +1,7 @@
+project_name = "agentes-ai"
+environment  = "dev"
+region       = "us-east-1"
+
+tags = {
+  Owner = "mauro"
+}

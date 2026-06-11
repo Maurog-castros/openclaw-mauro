@@ -1,0 +1,9 @@
+{
+  "keywords": "python developer remote",
+  "location": "Chile",
+  "easy_apply_only": true,
+  "max_jobs_to_scan": 15,
+  "max_applications_per_run": 5,
+  "dry_run": true,
+  "pause_between_applications_sec": 8
+}

@@ -1,0 +1,237 @@
+{
+  "C:\\DEV\\openclaw-mauro\\.claude\\settings.local.json": {
+    "mtime": 1779834443.615246,
+    "ast_hash": "b453252fb0493d4a12a7fea2858cf8af",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\abrir-openclaw-dashboard.ps1": {
+    "mtime": 1779834522.700968,
+    "ast_hash": "10417a82c06226b80085076846e3b9d7",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\abrir-openclaw-sesion-actual.ps1": {
+    "mtime": 1779834522.7686565,
+    "ast_hash": "1615f751c5a9e893ca3df5a9d7eaf073",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\app.py": {
+    "mtime": 1780284878.34321,
+    "ast_hash": "129a026563fa0c037f11d75ba5b6c55b",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\config\\finanzas\\merchant_aliases.example.json": {
+    "mtime": 1780451567.9554017,
+    "ast_hash": "d914f7632fe0110604398925aecb190a",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\config\\finanzas\\openclaw-finanzas.example.json": {
+    "mtime": 1780442605.3707676,
+    "ast_hash": "454c3ea88d1a22dc755b3aba9073ac52",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\config\\linkedin_jobs\\cv_map.json": {
+    "mtime": 1780441943.319041,
+    "ast_hash": "3ce020d5f3db2c6b40e7ca74b9b1d24e",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\config\\linkedin_jobs\\search.json": {
+    "mtime": 1780441943.2934127,
+    "ast_hash": "c04ded9dffe8ed0715f8ef4bf3d8ddc9",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\config\\linkedin_jobs_soldador\\cv_map.json": {
+    "mtime": 1780441943.2984762,
+    "ast_hash": "b39936ca6210549b07cc3d98ec9b948e",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\config\\linkedin_jobs_soldador\\search.json": {
+    "mtime": 1780441943.2984762,
+    "ast_hash": "5c9728cf1689ea6bae4459c7e507b51c",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\data\\finanzas_merchant_aliases.json": {
+    "mtime": 1780451572.0217898,
+    "ast_hash": "d914f7632fe0110604398925aecb190a",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\output\\openclaw-server.json": {
+    "mtime": 1780445180.6138735,
+    "ast_hash": "06b32b5b3bfc2c525e8ab14b415108d1",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\output\\playwright\\check_planilla_dev.py": {
+    "mtime": 1780441943.319041,
+    "ast_hash": "8add7fdebd16d911685a2ad8f68362c7",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\output\\playwright\\explore_hl.py": {
+    "mtime": 1780441943.319041,
+    "ast_hash": "4e1b2f3cda8dbeb254997a51e5ecb5a5",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\output\\playwright\\hl_comparison.json": {
+    "mtime": 1780361101.0735903,
+    "ast_hash": "1e1e6edea88e6df46560642b8c32f40d",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\output\\playwright\\summarize.py": {
+    "mtime": 1780441943.319041,
+    "ast_hash": "a9413dfca6603af8cd0b14313e057871",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\apply_openclaw_finanzas_config.py": {
+    "mtime": 1780452962.9497738,
+    "ast_hash": "99b169474088b519acbe9eca41aca802",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\finanzas_common.py": {
+    "mtime": 1780451875.577222,
+    "ast_hash": "d8d239123cc4cd629591ff95ed8756f5",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\finanzas_merchant_report.py": {
+    "mtime": 1780452984.5752392,
+    "ast_hash": "73dc2a02ce1b36aa3194c0d860c520d5",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\finanzas_merge.py": {
+    "mtime": 1780450529.1643715,
+    "ast_hash": "af2ea990c62a0c682446ae4abd62bbe3",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\finanzas_monthly_report.py": {
+    "mtime": 1780451879.4119864,
+    "ast_hash": "d674f8e4626cd46403bea39380eef6cd",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\fix-openclaw-cli-healthcheck.sh": {
+    "mtime": 1779930120.1236494,
+    "ast_hash": "60cc045efd081e45feda3a41d3c2d225",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\lider_monthly_report.py": {
+    "mtime": 1780441943.2924163,
+    "ast_hash": "e0c51487415a4c63f84102230d77c60c",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\lider_receipts_agent.py": {
+    "mtime": 1780441943.2178104,
+    "ast_hash": "4f1ed377efd67f0cad234ed6454e4327",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\linkedin_jobs_agent.py": {
+    "mtime": 1780441943.319041,
+    "ast_hash": "5e7c8bd03ceee9a93888bb12d6efda9f",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\linkedin_jobs_report.py": {
+    "mtime": 1780441943.2178104,
+    "ast_hash": "3f4e1aae5bcde1bf3a39d70347bf5bcb",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\linkedin_jobs_soldador.py": {
+    "mtime": 1780441943.2178104,
+    "ast_hash": "782be427424bd7438f2a1134cab3f1bc",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\receipt_vision_agent.py": {
+    "mtime": 1780445449.340634,
+    "ast_hash": "59378d804df908a71b02b429c288ab9f",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\run_finanzas_pipeline.ps1": {
+    "mtime": 1780450541.5809188,
+    "ast_hash": "425a792278a74803411e868112f0f18b",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\run_finanzas_pipeline.sh": {
+    "mtime": 1780450532.3703272,
+    "ast_hash": "dde0b99a4b314efc2343dd6abd438c79",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\santander_cartola_agent.py": {
+    "mtime": 1780450754.4491408,
+    "ast_hash": "01fdadd7372e13a47a9e66246be05bc6",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\santander_cuadratura.py": {
+    "mtime": 1780450520.0331242,
+    "ast_hash": "5fc89f557999fc560ad0557206c82816",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\setup_whatsapp_openclaw.sh": {
+    "mtime": 1780446823.5229313,
+    "ast_hash": "bf92dee623b4cc111cc8436352fea1dc",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\sync-openclaw-models.sh": {
+    "mtime": 1780287982.6433742,
+    "ast_hash": "bcbf237e0e0e86aad1d9bf251af11e8c",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\transferencias_agent.py": {
+    "mtime": 1780441943.2178104,
+    "ast_hash": "f8decf8b62e991eb5f4dd637634654e0",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\.playwright-cli\\page-2026-06-02T00-41-20-091Z.yml": {
+    "mtime": 1780360880.0913987,
+    "ast_hash": "7658704412a60b0b55f0e21c07b4f2e9",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\.playwright-cli\\page-2026-06-02T00-41-52-989Z.yml": {
+    "mtime": 1780360913.009184,
+    "ast_hash": "579cdabf7221fd3dd4496e9ad055f890",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\.playwright-cli\\page-2026-06-02T00-45-53-512Z.yml": {
+    "mtime": 1780361153.515882,
+    "ast_hash": "569dffb2a6115dc8fb48f4b21ee006cb",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\README.md": {
+    "mtime": 1779652778.996724,
+    "ast_hash": "6c224c7c6e600a6aade76bf1c934897d",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\README-finanzas-agent.md": {
+    "mtime": 1780451370.0574553,
+    "ast_hash": "95531b40f16df6e1da152ec42a9cc8d6",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\README-hermes-dashboard.md": {
+    "mtime": 1780441943.319041,
+    "ast_hash": "e02589a40f9c516c9673216383db278d",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\README-lider-agent.md": {
+    "mtime": 1780442667.405676,
+    "ast_hash": "6dbe382a0aa0a292ba60dde5685ff986",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\README-linkedin-agent.md": {
+    "mtime": 1780441943.2934127,
+    "ast_hash": "a5ed07b962099dc2bee6cfb9fa58251f",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\README-linkedin-soldador-agent.md": {
+    "mtime": 1780441943.2198296,
+    "ast_hash": "80de162aed5dba7a318ffd53822391b4",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\requirements-finanzas-agent.txt": {
+    "mtime": 1780450534.6275702,
+    "ast_hash": "aa899c19eb3ad3f7d5c53e84dadaa38e",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\requirements-lider-agent.txt": {
+    "mtime": 1780441943.2178104,
+    "ast_hash": "bf8db1764623d7428e878405ae3268c2",
+    "semantic_hash": ""
+  },
+  "C:\\DEV\\openclaw-mauro\\scripts\\requirements-linkedin-agent.txt": {
+    "mtime": 1780441943.2969499,
+    "ast_hash": "0e4f4bd9bc26c4628c4fa2a005036f11",
+    "semantic_hash": ""
+  }
+}

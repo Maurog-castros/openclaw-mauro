@@ -83,3 +83,4 @@ client_secret*.json
 *_token.json
 gmail_credentials.json
 gmail_token.json
+*.eml

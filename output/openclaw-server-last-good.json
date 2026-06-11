@@ -1,0 +1,719 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.5.31",
+    "lastTouchedAt": "2026-06-03T00:11:27.171Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-06-01T04:24:33.174Z",
+    "lastRunVersion": "2026.5.31",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "providers": {
+      "remote-lm": {
+        "baseUrl": "http://litellm:4000/v1",
+        "apiKey": "sk-openclaw-local",
+        "api": "openai-completions",
+        "timeoutSeconds": 60,
+        "models": [
+          {
+            "id": "openclaw-remote",
+            "name": "qwen3-coder-next via Iamiko (LiteLLM)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32768,
+            "maxTokens": 4096
+          },
+          {
+            "id": "openclaw-remote-coder",
+            "name": "qwen3-coder-next coder via Iamiko (LiteLLM)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32768,
+            "maxTokens": 4096
+          },
+          {
+            "id": "openclaw-remote-vision",
+            "name": "qwen3-vl-30b-a3b-instruct vision via Iamiko (LiteLLM)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32768,
+            "maxTokens": 4096
+          },
+          {
+            "id": "openclaw-remote-embed",
+            "name": "text-embedding-nomic-embed-text-v1.5 embeddings via Iamiko (LiteLLM)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 8192,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "remote-lm/openclaw-remote",
+        "fallbacks": [
+          "remote-lm/openclaw-remote-coder",
+          "remote-lm/openclaw-remote-vision"
+        ]
+      },
+      "bootstrapTotalMaxChars": 8000,
+      "compaction": {
+        "reserveTokensFloor": 20000
+      },
+      "sandbox": {
+        "mode": "all"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8,
+        "archiveAfterMinutes": 60
+      },
+      "typingMode": "instant",
+      "typingIntervalSeconds": 4
+    },
+    "list": [
+      {
+        "id": "main",
+        "model": {
+          "primary": "remote-lm/openclaw-remote",
+          "fallbacks": [
+            "remote-lm/openclaw-remote-coder",
+            "remote-lm/openclaw-remote-vision"
+          ]
+        },
+        "skillsLimits": {
+          "maxSkillsPromptChars": 800
+        },
+        "contextLimits": {
+          "memoryGetMaxChars": 4000,
+          "toolResultMaxChars": 6000,
+          "postCompactionMaxChars": 2500
+        },
+        "sandbox": {
+          "mode": "off"
+        },
+        "tools": {
+          "allow": [
+            "read",
+            "write",
+            "edit",
+            "exec",
+            "process",
+            "web_search",
+            "memory_search",
+            "memory_get"
+          ],
+          "exec": {
+            "host": "gateway",
+            "security": "full",
+            "ask": "on-miss",
+            "strictInlineEval": true,
+            "commandHighlighting": true
+          }
+        }
+      },
+      {
+        "id": "intel",
+        "name": "intel",
+        "workspace": "/home/node/.openclaw/workspace/marketing/intel",
+        "agentDir": "/home/node/.openclaw/agents/intel/agent",
+        "model": {
+          "primary": "remote-lm/openclaw-remote",
+          "fallbacks": [
+            "remote-lm/openclaw-remote-coder",
+            "remote-lm/openclaw-remote-vision"
+          ]
+        },
+        "skillsLimits": {
+          "maxSkillsPromptChars": 800
+        },
+        "contextLimits": {
+          "memoryGetMaxChars": 4000,
+          "memoryGetDefaultLines": 80,
+          "toolResultMaxChars": 6000,
+          "postCompactionMaxChars": 2500
+        },
+        "sandbox": {
+          "mode": "off"
+        },
+        "tools": {
+          "allow": [
+            "read",
+            "write",
+            "edit",
+            "exec",
+            "web_search",
+            "memory_search",
+            "memory_get"
+          ],
+          "exec": {
+            "host": "gateway",
+            "ask": "on-miss"
+          }
+        }
+      },
+      {
+        "id": "content",
+        "name": "content",
+        "workspace": "/home/node/.openclaw/workspace/marketing/content",
+        "agentDir": "/home/node/.openclaw/agents/content/agent",
+        "model": {
+          "primary": "remote-lm/openclaw-remote",
+          "fallbacks": [
+            "remote-lm/openclaw-remote-coder",
+            "remote-lm/openclaw-remote-vision"
+          ]
+        },
+        "skillsLimits": {
+          "maxSkillsPromptChars": 800
+        },
+        "contextLimits": {
+          "toolResultMaxChars": 5000
+        },
+        "sandbox": {
+          "mode": "off"
+        },
+        "tools": {
+          "allow": [
+            "read",
+            "write",
+            "edit",
+            "exec",
+            "message",
+            "image",
+            "web_search",
+            "memory_search",
+            "memory_get"
+          ],
+          "exec": {
+            "host": "gateway",
+            "ask": "on-miss",
+            "strictInlineEval": true,
+            "commandHighlighting": true
+          }
+        },
+        "description": "Contenido y redes: borradores con Intel, aprobacion antes de publicar"
+      },
+      {
+        "id": "sales",
+        "name": "sales",
+        "workspace": "/home/node/.openclaw/workspace/marketing/sales",
+        "agentDir": "/home/node/.openclaw/agents/sales/agent",
+        "model": {
+          "primary": "remote-lm/openclaw-remote",
+          "fallbacks": [
+            "remote-lm/openclaw-remote-coder",
+            "remote-lm/openclaw-remote-vision"
+          ]
+        },
+        "skillsLimits": {
+          "maxSkillsPromptChars": 800
+        },
+        "contextLimits": {
+          "toolResultMaxChars": 5000
+        },
+        "sandbox": {
+          "mode": "off"
+        },
+        "tools": {
+          "allow": [
+            "read",
+            "write",
+            "edit",
+            "web_search",
+            "memory_search",
+            "memory_get"
+          ]
+        }
+      },
+      {
+        "id": "pyme-chile",
+        "name": "PymeChile",
+        "workspace": "/home/node/.openclaw/workspace/pyme-chile",
+        "agentDir": "/home/node/.openclaw/agents/pyme-chile/agent",
+        "model": {
+          "primary": "remote-lm/openclaw-remote",
+          "fallbacks": [
+            "remote-lm/openclaw-remote-coder",
+            "remote-lm/openclaw-remote-vision"
+          ]
+        },
+        "skillsLimits": {
+          "maxSkillsPromptChars": 800
+        },
+        "contextLimits": {
+          "toolResultMaxChars": 5000
+        },
+        "sandbox": {
+          "mode": "off"
+        },
+        "tools": {
+          "allow": [
+            "read",
+            "write",
+            "edit",
+            "web_search",
+            "memory_search",
+            "memory_get"
+          ]
+        }
+      },
+      {
+        "id": "hl-miko-web",
+        "name": "hl-miko-web",
+        "workspace": "/home/node/.openclaw/workspace/projects/hl_miko",
+        "agentDir": "/home/node/.openclaw/agents/hl-miko-web/agent",
+        "model": {
+          "primary": "remote-lm/openclaw-remote",
+          "fallbacks": [
+            "remote-lm/openclaw-remote-coder",
+            "remote-lm/openclaw-remote-vision"
+          ]
+        },
+        "bootstrapTotalMaxChars": 6000,
+        "skillsLimits": {
+          "maxSkillsPromptChars": 800
+        },
+        "contextLimits": {
+          "memoryGetMaxChars": 3000,
+          "toolResultMaxChars": 3000,
+          "postCompactionMaxChars": 2000
+        },
+        "identity": {
+          "name": "Miko Dev",
+          "theme": "desarrollo web hl_miko (HL-Go, APIs, permisos)",
+          "emoji": "🛠️"
+        },
+        "sandbox": {
+          "mode": "off"
+        },
+        "tools": {
+          "allow": [
+            "read",
+            "write",
+            "edit",
+            "exec",
+            "process",
+            "web_search",
+            "memory_search",
+            "memory_get"
+          ],
+          "exec": {
+            "host": "gateway",
+            "ask": "on-miss"
+          }
+        }
+      },
+      {
+        "id": "finanzas",
+        "name": "finanzas",
+        "workspace": "/home/node/.openclaw/workspace/marketing/finanzas",
+        "agentDir": "/home/node/.openclaw/agents/finanzas/agent",
+        "model": {
+          "primary": "remote-lm/openclaw-remote",
+          "fallbacks": [
+            "remote-lm/openclaw-remote-coder",
+            "remote-lm/openclaw-remote-vision"
+          ]
+        },
+        "sandbox": {
+          "mode": "off"
+        },
+        "tools": {
+          "allow": [
+            "read",
+            "write",
+            "exec",
+            "message",
+            "image",
+            "memory_search",
+            "memory_get"
+          ],
+          "exec": {
+            "host": "gateway",
+            "security": "full",
+            "ask": "off",
+            "strictInlineEval": true,
+            "commandHighlighting": true
+          }
+        },
+        "description": "Gastos, boletas, transferencias y reportes mensuales",
+        "identity": {
+          "name": "Finanzas",
+          "theme": "gastos personales, boletas y transferencias Chile",
+          "emoji": "💰"
+        },
+        "contextLimits": {
+          "toolResultMaxChars": 3500,
+          "postCompactionMaxChars": 2500
+        }
+      }
+    ]
+  },
+  "tools": {
+    "web": {
+      "search": {
+        "provider": "gemini",
+        "maxResults": 3,
+        "timeoutSeconds": 25
+      }
+    },
+    "exec": {
+      "host": "auto",
+      "security": "full",
+      "ask": "on-miss",
+      "strictInlineEval": true,
+      "commandHighlighting": true
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "finanzas",
+      "match": {
+        "channel": "telegram"
+      },
+      "comment": "Telegram DM -> agente finanzas (boletas + gastos)"
+    },
+    {
+      "agentId": "finanzas",
+      "comment": "WhatsApp -> agente finanzas (boletas + gastos)",
+      "match": {
+        "channel": "whatsapp"
+      }
+    }
+  ],
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerAllowFrom": [
+      "telegram:8503943962",
+      "whatsapp:+56929683524",
+      "whatsapp:+56945046845"
+    ],
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "8503943962"
+      ],
+      "actions": {
+        "poll": true,
+        "sendMessage": true
+      },
+      "groupAllowFrom": [
+        "8503943962"
+      ],
+      "groupPolicy": "allowlist",
+      "trustedLocalFileRoots": [
+        "/home/mauro/openclaw-mauro/data/config/media/inbound",
+        "/home/mauro/openclaw-mauro/data/inbox/boletas",
+        "/home/mauro/openclaw-mauro/data",
+        "/home/node/.openclaw/media/inbound",
+        "/home/node/.openclaw/finanzas_data",
+        "/home/node/.openclaw/finanzas_data/inbox/boletas",
+        "/home/node/openclaw-mauro/data/config/media/inbound",
+        "/home/node/openclaw-mauro/data",
+        "/home/node/openclaw-mauro/data/inbox/boletas"
+      ],
+      "direct": {
+        "8503943962": {
+          "systemPrompt": "Canal finanzas. NUNCA respondas NO_REPLY: siempre texto visible al usuario. Consultas por mes: finanzas_monthly_report.py --month YYYY-MM --json. Transferencias: --limit N (ultimas N) o --days N (periodo); NUNCA cat el CSV. IG (link o seguimiento «ultimo post»/«de que trata»): content_instagram_whatsapp.py --text \"<msg>\" --json -> whatsapp_reply. Observaciones: finanzas_observaciones.py set --date ... --amount ... --match ... --note \"...\" --json. Gasto por lugar/alias: finanzas_merchant_report.py --alias \"NOMBRE\" --detail --json; responde copiando detail_summary (sin tablas markdown). Cuadratura banco: santander_cartola_agent.py + santander_cuadratura.py --month YYYY-MM --json. Fotos de boletas: finanzas_receipt_whatsapp.py --source whatsapp_foto --json -> whatsapp_reply (incluye saldo al final). Saldo CC Santander: finanzas_saldo.py report --json al cerrar; set-actual con finanzas_saldo_whatsapp.py --text. CSV: /home/node/openclaw-mauro/data/finanzas_movimientos.csv"
+        }
+      }
+    },
+    "whatsapp": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "groupPolicy": "disabled",
+      "allowFrom": [
+        "+56945046845"
+      ],
+      "sendReadReceipts": true,
+      "reactionLevel": "ack",
+      "mediaMaxMb": 50,
+      "accounts": {
+        "default": {
+          "enabled": true,
+          "name": "OpenClaw Finanzas",
+          "authDir": "/home/node/.openclaw/whatsapp-auth/default"
+        }
+      },
+      "direct": {
+        "*": {
+          "systemPrompt": "Canal finanzas. NUNCA respondas NO_REPLY: siempre texto visible al usuario. Consultas por mes: finanzas_monthly_report.py --month YYYY-MM --json. Transferencias: --limit N (ultimas N) o --days N (periodo); NUNCA cat el CSV. IG (link o seguimiento «ultimo post»/«de que trata»): content_instagram_whatsapp.py --text \"<msg>\" --json -> whatsapp_reply. Observaciones: finanzas_observaciones.py set --date ... --amount ... --match ... --note \"...\" --json. Gasto por lugar/alias: finanzas_merchant_report.py --alias \"NOMBRE\" --detail --json; responde copiando detail_summary (sin tablas markdown). Cuadratura banco: santander_cartola_agent.py + santander_cuadratura.py --month YYYY-MM --json. Fotos de boletas: finanzas_receipt_whatsapp.py --source whatsapp_foto --json -> whatsapp_reply (incluye saldo al final). Saldo CC Santander: finanzas_saldo.py report --json al cerrar; set-actual con finanzas_saldo_whatsapp.py --text. CSV: /home/node/openclaw-mauro/data/finanzas_movimientos.csv"
+        },
+        "+56929683524": {
+          "systemPrompt": "Canal finanzas. Fotos de boletas: ejecuta receipt_vision_agent.py (--latest-inbound --merge). Responde con TODOS los items y montos. CSV: /home/mauro/openclaw-mauro/data/finanzas_movimientos.csv"
+        },
+        "+56945046845": {
+          "systemPrompt": "Canal finanzas. NUNCA respondas NO_REPLY: siempre texto visible al usuario. Consultas por mes: finanzas_monthly_report.py --month YYYY-MM --json. Transferencias: --limit N (ultimas N) o --days N (periodo); NUNCA cat el CSV. IG (link o seguimiento «ultimo post»/«de que trata»): content_instagram_whatsapp.py --text \"<msg>\" --json -> whatsapp_reply. Observaciones: finanzas_observaciones.py set --date ... --amount ... --match ... --note \"...\" --json. Gasto por lugar/alias: finanzas_merchant_report.py --alias \"NOMBRE\" --detail --json; responde copiando detail_summary (sin tablas markdown). Cuadratura banco: santander_cartola_agent.py + santander_cuadratura.py --month YYYY-MM --json. Fotos de boletas: finanzas_receipt_whatsapp.py --source whatsapp_foto --json -> whatsapp_reply (incluye saldo al final). Saldo CC Santander: finanzas_saldo.py report --json al cerrar; set-actual con finanzas_saldo_whatsapp.py --text. CSV: /home/node/openclaw-mauro/data/finanzas_movimientos.csv"
+        }
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "bind": "auto",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://127.0.0.1:18789",
+        "http://192.168.1.12:18789",
+        "http://localhost:18789"
+      ],
+      "allowInsecureAuth": true,
+      "dangerouslyDisableDeviceAuth": true
+    },
+    "auth": {
+      "mode": "trusted-proxy",
+      "password": "82f0029ff4eea5a511df1338afad1aa4b684f15e34772c4c",
+      "trustedProxy": {
+        "userHeader": "x-forwarded-user",
+        "allowUsers": [
+          "mauro-lan"
+        ]
+      }
+    },
+    "trustedProxies": [
+      "172.30.50.10"
+    ]
+  },
+  "skills": {
+    "limits": {
+      "maxSkillsPromptChars": 2000
+    },
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "apple-notes": {
+        "enabled": false
+      },
+      "apple-reminders": {
+        "enabled": false
+      },
+      "bear-notes": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "clawhub": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "discord": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "imsg": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "peekaboo": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": false
+      },
+      "slack": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "summarize": {
+        "enabled": false
+      },
+      "things-mac": {
+        "enabled": false
+      },
+      "tmux": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "video-frames": {
+        "enabled": false
+      },
+      "voice-call": {
+        "enabled": false
+      },
+      "wacli": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
+      },
+      "gh-issues": {
+        "enabled": false
+      },
+      "github": {
+        "enabled": false
+      },
+      "session-logs": {
+        "enabled": false
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "memory-core": {
+        "config": {
+          "dreaming": {
+            "enabled": true
+          }
+        },
+        "enabled": true
+      },
+      "telegram": {
+        "config": {}
+      },
+      "active-memory": {
+        "enabled": true,
+        "config": {
+          "enabled": true,
+          "agents": [
+            "intel",
+            "content",
+            "sales",
+            "hl-miko-web"
+          ],
+          "queryMode": "message",
+          "timeoutMs": 1200,
+          "setupGraceTimeoutMs": 250,
+          "promptStyle": "balanced",
+          "logging": true
+        }
+      },
+      "duckduckgo": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "region": "us-en",
+            "safeSearch": "moderate"
+          }
+        }
+      },
+      "google": {
+        "enabled": true
+      },
+      "whatsapp": {
+        "enabled": true,
+        "config": {}
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "cron": {
+    "maxConcurrentRuns": 8
+  },
+  "session": {
+    "reset": {
+      "idleMinutes": 480
+    },
+    "typingMode": "instant",
+    "typingIntervalSeconds": 4
+  }
+}

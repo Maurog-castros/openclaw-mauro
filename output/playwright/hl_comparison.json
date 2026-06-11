@@ -1,0 +1,2963 @@
+{
+  "old": [
+    {
+      "label": "panel",
+      "url": "https://h-l.cl/?page=panel",
+      "title": "Bienvenido al panel de control",
+      "headings": [],
+      "tables": 0,
+      "forms": 0,
+      "inputs": 0,
+      "buttons_sample": [],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        },
+        {
+          "text": "USUARIOS\n11",
+          "href": "https://h-l.cl?page=users"
+        },
+        {
+          "text": "USUARIOS CLI.\n10",
+          "href": "https://h-l.cl?page=client_users"
+        },
+        {
+          "text": "USUARIOS CLAVES",
+          "href": "https://h-l.cl?page=claves_permissions"
+        },
+        {
+          "text": "CLAVES",
+          "href": "https://h-l.cl?page=claves"
+        },
+        {
+          "text": "CLIENTES\n197",
+          "href": "https://h-l.cl?page=clients"
+        },
+        {
+          "text": "INGRESO BL",
+          "href": "https://h-l.cl?page=ingresoBL"
+        },
+        {
+          "text": "PLANILLA",
+          "href": "https://h-l.cl?page=planilla"
+        },
+        {
+          "text": "BUQUES",
+          "href": "https://h-l.cl?page=buques"
+        },
+        {
+          "text": "NAVIERAS",
+          "href": "https://h-l.cl?page=navieras"
+        },
+        {
+          "text": "TRANSPORTISTAS",
+          "href": "https://h-l.cl?page=transportistas"
+        },
+        {
+          "text": "CHOFERES",
+          "href": "https://h-l.cl?page=choferes"
+        },
+        {
+          "text": "GENERADOR DE ARCHIVOS",
+          "href": "https://h-l.cl?page=generator"
+        },
+        {
+          "text": "PUERTOS",
+          "href": "https://h-l.cl?page=ports"
+        },
+        {
+          "text": "CONFIG. REMESA",
+          "href": "https://h-l.cl?page=remesa_form"
+        },
+        {
+          "text": "REMESA CLIENTE",
+          "href": "https://h-l.cl?page=remesa_cliente"
+        },
+        {
+          "text": "GENERADOR DE REMESA",
+          "href": "https://h-l.cl?page=remesa"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "users",
+      "url": "https://h-l.cl/?page=users",
+      "title": "Usuarios",
+      "headings": [
+        "Formulario de usuario",
+        "Formulario de usuario"
+      ],
+      "tables": 1,
+      "forms": 1,
+      "inputs": 11,
+      "buttons_sample": [
+        "Nuevo",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "client_users",
+      "url": "https://h-l.cl/?page=client_users",
+      "title": "Usuarios clientes",
+      "headings": [
+        "Formulario de cliente",
+        "Formulario de cliente",
+        "Formulario de archivos",
+        "Formulario de archivos"
+      ],
+      "tables": 3,
+      "forms": 2,
+      "inputs": 27,
+      "buttons_sample": [
+        "Nuevo",
+        "Añadir",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        },
+        {
+          "text": "mikonet@gmail.com",
+          "href": "mailto:mikonet@gmail.com"
+        },
+        {
+          "text": "xuyongfeng8826@gmail.com",
+          "href": "mailto:xuyongfeng8826@gmail.com"
+        },
+        {
+          "text": "376916112@qq.com",
+          "href": "mailto:376916112@qq.com"
+        },
+        {
+          "text": "zeroyu198968@gmail.com",
+          "href": "mailto:zeroyu198968@gmail.com"
+        },
+        {
+          "text": "godlovesesther2@gmail.com",
+          "href": "mailto:godlovesesther2@gmail.com"
+        },
+        {
+          "text": "fonsecalealj@gmail.com",
+          "href": "mailto:fonsecalealj@gmail.com"
+        },
+        {
+          "text": "huaboconta@gmail.com",
+          "href": "mailto:huaboconta@gmail.com"
+        },
+        {
+          "text": "dexinxiaowu@gmail.com",
+          "href": "mailto:dexinxiaowu@gmail.com"
+        },
+        {
+          "text": "jiayongma66@gmail.com",
+          "href": "mailto:jiayongma66@gmail.com"
+        },
+        {
+          "text": "juan730222@gmail.com",
+          "href": "mailto:juan730222@gmail.com"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "claves_permissions",
+      "url": "https://h-l.cl/?page=claves_permissions",
+      "title": "Usuarios claves",
+      "headings": [
+        "Formulario de usuario",
+        "Formulario de usuario"
+      ],
+      "tables": 1,
+      "forms": 1,
+      "inputs": 9,
+      "buttons_sample": [
+        "Nuevo",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "claves",
+      "url": "https://h-l.cl/?page=claves",
+      "title": "Claves disponibles",
+      "headings": [
+        "Formulario de claves puertos",
+        "Formulario de claves puertos",
+        "Lista de modificaciones",
+        "Lista de modificaciones"
+      ],
+      "tables": 1,
+      "forms": 2,
+      "inputs": 7,
+      "buttons_sample": [
+        "Nueva",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        },
+        {
+          "text": "https://tgr.cl/",
+          "href": "https://tgr.cl/"
+        },
+        {
+          "text": "https://www.stiport.com/sti_en_linea/contenedores/index.php",
+          "href": "https://www.stiport.com/sti_en_linea/contenedores/index.php"
+        },
+        {
+          "text": "https://portal.dpworldsanantonio.cl/#/login",
+          "href": "https://portal.dpworldsanantonio.cl/#/login"
+        },
+        {
+          "text": "https://giconaweb.ispch.gob.cl/",
+          "href": "https://giconaweb.ispch.gob.cl/"
+        },
+        {
+          "text": "https://portal.dpworldsanantonio.cl/#/inicio",
+          "href": "https://portal.dpworldsanantonio.cl/#/inicio"
+        },
+        {
+          "text": "https://tgr.cl/",
+          "href": "https://tgr.cl/"
+        },
+        {
+          "text": "https://www.stiport.com/sti_en_linea/contenedores/index.php",
+          "href": "https://www.stiport.com/sti_en_linea/contenedores/index.php"
+        },
+        {
+          "text": "https://portal.dpworldsanantonio.cl/#/login",
+          "href": "https://portal.dpworldsanantonio.cl/#/login"
+        },
+        {
+          "text": "https://giconaweb.ispch.gob.cl/",
+          "href": "https://giconaweb.ispch.gob.cl/"
+        },
+        {
+          "text": "https://portal.dpworldsanantonio.cl/#/inicio",
+          "href": "https://portal.dpworldsanantonio.cl/#/inicio"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "clients",
+      "url": "https://h-l.cl/?page=clients",
+      "title": "Clientes",
+      "headings": [],
+      "tables": 1,
+      "forms": 0,
+      "inputs": 1,
+      "buttons_sample": [
+        "Nuevo"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "ingresoBL",
+      "url": "https://h-l.cl/?page=ingresoBL",
+      "title": "Ingreso de BL",
+      "headings": [
+        "Ingreso de BL"
+      ],
+      "tables": 1,
+      "forms": 1,
+      "inputs": 9,
+      "buttons_sample": [
+        "Volver",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "planilla",
+      "url": "https://h-l.cl/?page=planilla",
+      "title": "Planilla",
+      "headings": [
+        "Naviera:",
+        "COSCO",
+        "Puerto:",
+        "MEDLOG CHILE EXTRAPORTUARIOS LIMITADA (SAN ANTONIO)",
+        "Naviera:",
+        "COSCO",
+        "Puerto:",
+        "MEDLOG CHILE EXTRAPORTUARIOS LIMITADA (SAN ANTONIO)"
+      ],
+      "tables": 1,
+      "forms": 3,
+      "inputs": 1494,
+      "buttons_sample": [
+        "Archivados",
+        "Filtros",
+        "02-05-2026",
+        "11-05-2026",
+        "17-05-2026",
+        "23-05-2026"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        },
+        {
+          "text": "Tracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        },
+        {
+          "text": "Generar remesa",
+          "href": "?page=remesa&make=remesa&client_id=134&contenedor=OOCU8503189&bl=2094"
+        },
+        {
+          "text": "Endose",
+          "href": "?page=pdfs/endose&id=134"
+        },
+        {
+          "text": "Garantía",
+          "href": "?page=pdfs/pdf_cosco&id=2252"
+        },
+        {
+          "text": "Tracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        },
+        {
+          "text": "Generar remesa",
+          "href": "?page=remesa&make=remesa&client_id=89&contenedor=DFSU7460043&bl=2100"
+        },
+        {
+          "text": "Endose",
+          "href": "?page=pdfs/endose&id=89"
+        },
+        {
+          "text": "Garantía",
+          "href": "?page=pdfs/pdf_cosco&id=2258"
+        },
+        {
+          "text": "Tracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        },
+        {
+          "text": "Generar remesa",
+          "href": "?page=remesa&make=remesa&client_id=139&contenedor=TGBU5022250&bl=2110"
+        },
+        {
+          "text": "Endose",
+          "href": "?page=pdfs/endose&id=139"
+        },
+        {
+          "text": "Garantía",
+          "href": "?page=pdfs/pdf_cosco&id=2268"
+        },
+        {
+          "text": "Tracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        },
+        {
+          "text": "Generar remesa",
+          "href": "?page=remesa&make=remesa&client_id=134&contenedor=CSNU6796723&bl=2112"
+        },
+        {
+          "text": "Endose",
+          "href": "?page=pdfs/endose&id=134"
+        },
+        {
+          "text": "Garantía",
+          "href": "?page=pdfs/pdf_cosco&id=2270"
+        },
+        {
+          "text": "Tracking",
+          "href": "https://www.maersk.com/tracking/"
+        },
+        {
+          "text": "Generar remesa",
+          "href": "?page=remesa&make=remesa&client_id=167&contenedor=MRKU4904247&bl=2135"
+        },
+        {
+          "text": "Endose",
+          "href": "?page=pdfs/endose&id=167"
+        },
+        {
+          "text": "Garantía",
+          "href": "?page=pdfs/pdf_maersk&id=2293"
+        },
+        {
+          "text": "Tracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        },
+        {
+          "text": "Generar remesa",
+          "href": "?page=remesa&make=remesa&client_id=34&contenedor=FCIU9990645&bl=2134"
+        },
+        {
+          "text": "Endose",
+          "href": "?page=pdfs/endose&id=34"
+        },
+        {
+          "text": "Garantía",
+          "href": "?page=pdfs/pdf_cosco&id=2292"
+        },
+        {
+          "text": "Tracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        },
+        {
+          "text": "Generar remesa",
+          "href": "?page=remesa&make=remesa&client_id=89&contenedor=CSNU7128550&bl=2120"
+        },
+        {
+          "text": "Endose",
+          "href": "?page=pdfs/endose&id=89"
+        },
+        {
+          "text": "Garantía",
+          "href": "?page=pdfs/pdf_cosco&id=2278"
+        },
+        {
+          "text": "Tracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "buques",
+      "url": "https://h-l.cl/?page=buques",
+      "title": "Listado buques",
+      "headings": [],
+      "tables": 1,
+      "forms": 0,
+      "inputs": 1,
+      "buttons_sample": [
+        "Nuevo"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "navieras",
+      "url": "https://h-l.cl/?page=navieras",
+      "title": "Navieras",
+      "headings": [
+        "Formulario de naviera",
+        "Formulario de naviera"
+      ],
+      "tables": 1,
+      "forms": 1,
+      "inputs": 6,
+      "buttons_sample": [
+        "Nuevo",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        },
+        {
+          "text": "https://elines.coscoshipping.com/ebusiness/cargotracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        },
+        {
+          "text": "https://www.msc.com/en/track-a-shipment",
+          "href": "https://www.msc.com/en/track-a-shipment"
+        },
+        {
+          "text": "https://www.oocl.com/eng/ourservices/eservices/cargotracking/pages/cargotracking",
+          "href": "https://www.oocl.com/eng/ourservices/eservices/cargotracking/pages/cargotracking.aspx"
+        },
+        {
+          "text": "https://www.yangming.com/en/esolution/cargo_tracking",
+          "href": "https://www.yangming.com/en/esolution/cargo_tracking"
+        },
+        {
+          "text": "https://www.maersk.com/tracking/",
+          "href": "https://www.maersk.com/tracking/"
+        },
+        {
+          "text": "https://www.wanhai.com/views/main.xhtml",
+          "href": "https://www.wanhai.com/views/Main.xhtml"
+        },
+        {
+          "text": "https://ct.shipmentlink.com/servlet/tdb1_cargotracking.do",
+          "href": "https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do"
+        },
+        {
+          "text": "https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking",
+          "href": "https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking"
+        },
+        {
+          "text": "https://www.pilship.com/",
+          "href": "https://www.pilship.com/"
+        },
+        {
+          "text": "https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution",
+          "href": "https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution.html"
+        },
+        {
+          "text": "https://www.cma-cgm.com/ebusiness/tracking",
+          "href": "https://www.cma-cgm.com/ebusiness/tracking"
+        },
+        {
+          "text": "https://www.hmm21.com/e-service/general/trackntrace/trackntrace.do",
+          "href": "https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do"
+        },
+        {
+          "text": "https://www.zim.com/es/tools/track-a-shipment",
+          "href": "https://www.zim.com/es/tools/track-a-shipment"
+        },
+        {
+          "text": "https://elines.coscoshipping.com/ebusiness/cargotracking",
+          "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+        },
+        {
+          "text": "https://www.msc.com/en/track-a-shipment",
+          "href": "https://www.msc.com/en/track-a-shipment"
+        },
+        {
+          "text": "https://www.oocl.com/eng/ourservices/eservices/cargotracking/pages/cargotracking",
+          "href": "https://www.oocl.com/eng/ourservices/eservices/cargotracking/pages/cargotracking.aspx"
+        },
+        {
+          "text": "https://www.yangming.com/en/esolution/cargo_tracking",
+          "href": "https://www.yangming.com/en/esolution/cargo_tracking"
+        },
+        {
+          "text": "https://www.maersk.com/tracking/",
+          "href": "https://www.maersk.com/tracking/"
+        },
+        {
+          "text": "https://www.wanhai.com/views/Main.xhtml",
+          "href": "https://www.wanhai.com/views/Main.xhtml"
+        },
+        {
+          "text": "https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do",
+          "href": "https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do"
+        },
+        {
+          "text": "https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking",
+          "href": "https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking"
+        },
+        {
+          "text": "https://www.pilship.com/",
+          "href": "https://www.pilship.com/"
+        },
+        {
+          "text": "https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution",
+          "href": "https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution.html"
+        },
+        {
+          "text": "https://www.cma-cgm.com/ebusiness/tracking",
+          "href": "https://www.cma-cgm.com/ebusiness/tracking"
+        },
+        {
+          "text": "https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do",
+          "href": "https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do"
+        },
+        {
+          "text": "https://www.zim.com/es/tools/track-a-shipment",
+          "href": "https://www.zim.com/es/tools/track-a-shipment"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "transportistas",
+      "url": "https://h-l.cl/?page=transportistas",
+      "title": "Transportistas",
+      "headings": [
+        "Formulario de transportistas",
+        "Formulario de transportistas"
+      ],
+      "tables": 1,
+      "forms": 1,
+      "inputs": 5,
+      "buttons_sample": [
+        "Nuevo",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "choferes",
+      "url": "https://h-l.cl/?page=choferes",
+      "title": "Choferes",
+      "headings": [
+        "Formulario de chofer",
+        "Formulario de chofer"
+      ],
+      "tables": 1,
+      "forms": 1,
+      "inputs": 6,
+      "buttons_sample": [
+        "Nuevo",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        },
+        {
+          "text": "ROBERTO MANCILLA",
+          "href": "#"
+        },
+        {
+          "text": "ROBERTO MANCILLA",
+          "href": "#"
+        },
+        {
+          "text": "ROBERTO MANCILLA",
+          "href": "#"
+        },
+        {
+          "text": "LUIS IGNACIO URETA VIDAL",
+          "href": "#"
+        },
+        {
+          "text": "LUIS IGNACIO URETA VIDAL",
+          "href": "#"
+        },
+        {
+          "text": "LUIS IGNACIO URETA VIDAL",
+          "href": "#"
+        },
+        {
+          "text": "LUIS IGNACIO URETA VIDAL",
+          "href": "#"
+        },
+        {
+          "text": "LUIS IGNACIO URETA VIDAL",
+          "href": "#"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "generator",
+      "url": "https://h-l.cl/?page=generator",
+      "title": "Generador de archivos",
+      "headings": [],
+      "tables": 0,
+      "forms": 0,
+      "inputs": 0,
+      "buttons_sample": [],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        },
+        {
+          "text": "CREAR XLS DE AFORO",
+          "href": "https://h-l.cl?page=generator&make=xls"
+        },
+        {
+          "text": "CREAR PDF MSC",
+          "href": "https://h-l.cl?page=pdfs/pdf_medum&make=xls"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "ports",
+      "url": "https://h-l.cl/?page=ports",
+      "title": "Listado de puertos",
+      "headings": [
+        "Formulario de puerto",
+        "Formulario de puerto"
+      ],
+      "tables": 1,
+      "forms": 1,
+      "inputs": 7,
+      "buttons_sample": [
+        "Nuevo",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "remesa_form",
+      "url": "https://h-l.cl/?page=remesa_form",
+      "title": "Configuración de remesa",
+      "headings": [
+        "Configuración de Remesa"
+      ],
+      "tables": 0,
+      "forms": 1,
+      "inputs": 7,
+      "buttons_sample": [
+        "Volver",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "remesa_cliente",
+      "url": "https://h-l.cl/?page=remesa_cliente",
+      "title": "Remesa clientes",
+      "headings": [
+        "Formulario de remesa cliente",
+        "Formulario de remesa cliente"
+      ],
+      "tables": 1,
+      "forms": 1,
+      "inputs": 8,
+      "buttons_sample": [
+        "Nuevo",
+        "Cancelar",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    },
+    {
+      "label": "remesa",
+      "url": "https://h-l.cl/?page=remesa",
+      "title": "Remesa",
+      "headings": [
+        "Generar Remesa",
+        "Información del cliente",
+        "Información de envío",
+        "Montos"
+      ],
+      "tables": 0,
+      "forms": 1,
+      "inputs": 23,
+      "buttons_sample": [
+        "Volver",
+        "Guardar"
+      ],
+      "links_sample": [
+        {
+          "text": "Salir",
+          "href": "https://h-l.cl?page=logout"
+        }
+      ],
+      "nav_snippet": ""
+    }
+  ],
+  "dev": {
+    "dashboard_nav": [
+      {
+        "text": "Planilla",
+        "href": "https://dev.h-l.cl/planilla"
+      },
+      {
+        "text": "Seguimiento BL",
+        "href": "https://dev.h-l.cl/seguimiento-bl"
+      },
+      {
+        "text": "Ingreso BL",
+        "href": "https://dev.h-l.cl/ingresobl"
+      },
+      {
+        "text": "Usuarios",
+        "href": "https://dev.h-l.cl/usuarios"
+      },
+      {
+        "text": "Roles",
+        "href": "https://dev.h-l.cl/roles"
+      },
+      {
+        "text": "Permisos",
+        "href": "https://dev.h-l.cl/permissions-catalog"
+      },
+      {
+        "text": "Config",
+        "href": "https://dev.h-l.cl/sys-config"
+      },
+      {
+        "text": "Clientes",
+        "href": "https://dev.h-l.cl/clientes"
+      },
+      {
+        "text": "Usuarios Clientes",
+        "href": "https://dev.h-l.cl/client-users"
+      },
+      {
+        "text": "Buques",
+        "href": "https://dev.h-l.cl/buques"
+      },
+      {
+        "text": "Abreviaciones",
+        "href": "https://dev.h-l.cl/abreviaciones"
+      },
+      {
+        "text": "Navieras",
+        "href": "https://dev.h-l.cl/navieras"
+      },
+      {
+        "text": "Tipos Documento",
+        "href": "https://dev.h-l.cl/tipos-documento"
+      },
+      {
+        "text": "Transportistas",
+        "href": "https://dev.h-l.cl/transportistas"
+      },
+      {
+        "text": "Choferes",
+        "href": "https://dev.h-l.cl/choferes"
+      },
+      {
+        "text": "Puertos",
+        "href": "https://dev.h-l.cl/puertos"
+      },
+      {
+        "text": "Claves",
+        "href": "https://dev.h-l.cl/claves"
+      },
+      {
+        "text": "Usuarios Claves",
+        "href": "https://dev.h-l.cl/claves-permissions"
+      }
+    ],
+    "modules": [
+      {
+        "label": "dashboard",
+        "url": "https://dev.h-l.cl/inicio",
+        "title": "Bienvenido al panel de control",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Distribución Activa",
+          "Riesgo Próximo",
+          "44 cargas entran en atención dentro de la ventana configurada.",
+          "Top Agencias y Clientes",
+          "Bienvenido a HL-Go"
+        ],
+        "tables": 0,
+        "forms": 0,
+        "inputs": 2,
+        "buttons_sample": [],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Planilla",
+        "url": "https://dev.h-l.cl/planilla",
+        "title": "Planilla",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Edición masiva",
+          "Exportar registros",
+          "Búsqueda Avanzada",
+          "Búsqueda avanzada de planilla"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 3044,
+        "buttons_sample": [
+          "72 registros",
+          "Restaurar vista",
+          "Modificar buque",
+          "Modificar ETA",
+          "Cancelar",
+          "Aplicar cambios",
+          "Descargar",
+          "Borrar",
+          "Buscar"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Seguimiento BL",
+        "url": "https://dev.h-l.cl/seguimiento-bl",
+        "title": "Seguimiento BL",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Documentos autorizados"
+        ],
+        "tables": 1,
+        "forms": 0,
+        "inputs": 3,
+        "buttons_sample": [],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Ingreso BL",
+        "url": "https://dev.h-l.cl/ingresobl",
+        "title": "Ingreso de BL",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Datos del BL",
+          "Contenedores\n\nUno o más contenedores asociados al BL",
+          "Contenedores"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 14,
+        "buttons_sample": [
+          "Agregar",
+          "Guardar BL",
+          "Eliminar contenedor"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Usuarios",
+        "url": "https://dev.h-l.cl/usuarios",
+        "title": "Usuarios",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Formulario de Usuario\n                    Perfil, acceso y datos de contacto",
+          "Formulario de Usuario\n                    Perfil, acceso y datos de contacto",
+          "Formulario de Usuario",
+          "Perfil, acceso y datos de contacto"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 13,
+        "buttons_sample": [
+          "Nuevo Usuario",
+          "Editar usuario",
+          "Eliminar",
+          "Permisos",
+          "Cancelar",
+          "Guardar"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Roles",
+        "url": "https://dev.h-l.cl/roles",
+        "title": "Roles y Permisos",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Formulario de Rol\n                    Perfiles de seguridad del sistema",
+          "Formulario de Rol\n                    Perfiles de seguridad del sistema",
+          "Formulario de Rol",
+          "Perfiles de seguridad del sistema"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 9,
+        "buttons_sample": [
+          "Nuevo Rol",
+          "Editar rol",
+          "Permisos",
+          "Cancelar",
+          "Guardar Rol"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Permisos",
+        "url": "https://dev.h-l.cl/permissions-catalog",
+        "title": "Catálogo de Permisos",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 5,
+        "buttons_sample": [
+          "Sincronizar catálogo"
+        ],
+        "links_sample": [
+          {
+            "text": "Volver a roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Config",
+        "url": "https://dev.h-l.cl/sys-config",
+        "title": "Configuración del Sistema",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Configuración del Sistema",
+          "Nueva Clave\n                    Parámetros globales del sistema",
+          "Nueva Clave\n                    Parámetros globales del sistema",
+          "Nueva Clave"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 7,
+        "buttons_sample": [
+          "Nueva Clave",
+          "Editar clave",
+          "Eliminar",
+          "Cancelar",
+          "Guardar"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Clientes",
+        "url": "https://dev.h-l.cl/clientes",
+        "title": "Clientes",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Nuevo cliente\n                        Ficha comercial, contactos, direcciones y documentación",
+          "Nuevo cliente\n                        Ficha comercial, contactos, direcciones y documentación",
+          "Nuevo cliente",
+          "Ficha comercial, contactos, direcciones y documentación"
+        ],
+        "tables": 1,
+        "forms": 0,
+        "inputs": 3,
+        "buttons_sample": [
+          "Nuevo Cliente",
+          "Seleccionar"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Usuarios Clientes",
+        "url": "https://dev.h-l.cl/client-users",
+        "title": "Usuarios de Clientes",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Usuario de Cliente\n                    Gestión de accesos externos",
+          "Usuario de Cliente\n                    Gestión de accesos externos",
+          "Usuario de Cliente",
+          "Gestión de accesos externos"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 207,
+        "buttons_sample": [
+          "Nuevo Usuario Cliente",
+          "Editar usuario cliente",
+          "Eliminar Usuario",
+          "Cancelar",
+          "Guardar Usuario"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Buques",
+        "url": "https://dev.h-l.cl/buques",
+        "title": "Listado de Buques",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Formulario de Buque\n                    Gestión de naves mayores",
+          "Formulario de Buque\n                    Gestión de naves mayores",
+          "Formulario de Buque",
+          "Gestión de naves mayores"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 7,
+        "buttons_sample": [
+          "Nuevo Buque",
+          "Editar buque"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Abreviaciones",
+        "url": "https://dev.h-l.cl/abreviaciones",
+        "title": "Abreviaciones",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Formulario de Abreviación\n                    Reglas de nombre cliente en planilla",
+          "Formulario de Abreviación\n                    Reglas de nombre cliente en planilla",
+          "Formulario de Abreviación",
+          "Reglas de nombre cliente en planilla"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 9,
+        "buttons_sample": [
+          "Nueva Regla",
+          "Editar abreviación",
+          "Eliminar Regla",
+          "Cancelar",
+          "Guardar Regla"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Navieras",
+        "url": "https://dev.h-l.cl/navieras",
+        "title": "Listado de navieras",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Formulario de Naviera\n                    Gestión de empresas navieras",
+          "Formulario de Naviera\n                    Gestión de empresas navieras",
+          "Formulario de Naviera",
+          "Gestión de empresas navieras"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 10,
+        "buttons_sample": [
+          "Nueva Naviera",
+          "Editar naviera",
+          "Eliminar Naviera",
+          "Cancelar",
+          "Guardar Naviera"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          },
+          {
+            "text": "Sin URL",
+            "href": "#"
+          },
+          {
+            "text": "https://www.cma-cgm.com/ebusiness/tracking",
+            "href": "https://www.cma-cgm.com/ebusiness/tracking"
+          },
+          {
+            "text": "https://elines.coscoshipping.com/ebusiness/cargotracking",
+            "href": "https://elines.coscoshipping.com/ebusiness/cargotracking"
+          },
+          {
+            "text": "Sin URL",
+            "href": "#"
+          },
+          {
+            "text": "https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do",
+            "href": "https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do"
+          },
+          {
+            "text": "Sin URL",
+            "href": "#"
+          },
+          {
+            "text": "https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution",
+            "href": "https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution.html"
+          },
+          {
+            "text": "https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do",
+            "href": "https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do"
+          },
+          {
+            "text": "https://www.maersk.com/tracking/",
+            "href": "https://www.maersk.com/tracking/"
+          },
+          {
+            "text": "https://www.msc.com/en/track-a-shipment",
+            "href": "https://www.msc.com/en/track-a-shipment"
+          },
+          {
+            "text": "https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking",
+            "href": "https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Tipos Documento",
+        "url": "https://dev.h-l.cl/tipos-documento",
+        "title": "Tipos de Documento",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Tipo de documento\n                    Sugerencias del modal de documentos en Planilla",
+          "Tipo de documento\n                    Sugerencias del modal de documentos en Planilla",
+          "Tipo de documento",
+          "Sugerencias del modal de documentos en Planilla"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 9,
+        "buttons_sample": [
+          "Nuevo Tipo",
+          "Editar tipo de documento"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Transportistas",
+        "url": "https://dev.h-l.cl/transportistas",
+        "title": "Transportistas",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Formulario de Transportista\n                    Gestión de empresas de transporte",
+          "Formulario de Transportista\n                    Gestión de empresas de transporte",
+          "Formulario de Transportista",
+          "Gestión de empresas de transporte"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 9,
+        "buttons_sample": [
+          "Nuevo Transportista",
+          "Editar transportista",
+          "Eliminar Transportista",
+          "Cancelar",
+          "Guardar Transportista"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Choferes",
+        "url": "https://dev.h-l.cl/choferes",
+        "title": "Choferes",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Formulario de Chofer\n                    Gestión de conductores de flota",
+          "Formulario de Chofer\n                    Gestión de conductores de flota",
+          "Formulario de Chofer",
+          "Gestión de conductores de flota"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 10,
+        "buttons_sample": [
+          "Nuevo Chofer",
+          "Editar chofer"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Puertos",
+        "url": "https://dev.h-l.cl/puertos",
+        "title": "Listado de puertos",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Formulario de Puerto\n                    Gestión de terminales portuarios",
+          "Formulario de Puerto\n                    Gestión de terminales portuarios",
+          "Formulario de Puerto",
+          "Gestión de terminales portuarios"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 10,
+        "buttons_sample": [
+          "Nuevo Puerto",
+          "Editar puerto",
+          "Eliminar Puerto",
+          "Cancelar",
+          "Guardar Puerto"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Claves",
+        "url": "https://dev.h-l.cl/claves",
+        "title": "Gestor de Claves Logísticas",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Acceso Logístico\n                    Configura las credenciales de acceso",
+          "Acceso Logístico\n                    Configura las credenciales de acceso",
+          "Acceso Logístico",
+          "Configura las credenciales de acceso"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 10,
+        "buttons_sample": [
+          "Nuevo Acceso",
+          "Editar acceso logístico",
+          "Eliminar Acceso",
+          "Cancelar",
+          "Guardar Acceso"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          },
+          {
+            "text": "https://tgr.cl/",
+            "href": "https://tgr.cl/"
+          },
+          {
+            "text": "https://tgr.cl/",
+            "href": "https://tgr.cl/"
+          },
+          {
+            "text": "https://www.stiport.com/sti_en_linea/contenedores/index.php",
+            "href": "https://www.stiport.com/sti_en_linea/contenedores/index.php"
+          },
+          {
+            "text": "https://www.stiport.com/sti_en_linea/contenedores/index.php",
+            "href": "https://www.stiport.com/sti_en_linea/contenedores/index.php"
+          },
+          {
+            "text": "https://portal.dpworldsanantonio.cl/#/login",
+            "href": "https://portal.dpworldsanantonio.cl/#/login"
+          },
+          {
+            "text": "https://portal.dpworldsanantonio.cl/#/login",
+            "href": "https://portal.dpworldsanantonio.cl/#/login"
+          },
+          {
+            "text": "--",
+            "href": "#"
+          },
+          {
+            "text": "--",
+            "href": "#"
+          },
+          {
+            "text": "https://giconaweb.ispch.gob.cl/",
+            "href": "https://giconaweb.ispch.gob.cl/"
+          },
+          {
+            "text": "https://giconaweb.ispch.gob.cl/",
+            "href": "https://giconaweb.ispch.gob.cl/"
+          },
+          {
+            "text": "https://portal.dpworldsanantonio.cl/#/inicio",
+            "href": "https://portal.dpworldsanantonio.cl/#/inicio"
+          }
+        ],
+        "nav_snippet": ""
+      },
+      {
+        "label": "Usuarios Claves",
+        "url": "https://dev.h-l.cl/claves-permissions/",
+        "title": "Usuarios de Claves",
+        "headings": [
+          "Trabajo Diario",
+          "Administración",
+          "Mantenedores",
+          "Usuario de Accesos\n                    Gestión de permisos internos",
+          "Usuario de Accesos\n                    Gestión de permisos internos",
+          "Usuario de Accesos",
+          "Gestión de permisos internos"
+        ],
+        "tables": 1,
+        "forms": 1,
+        "inputs": 13,
+        "buttons_sample": [
+          "Nuevo Usuario",
+          "Eliminar Usuario",
+          "Cancelar",
+          "Guardar Usuario"
+        ],
+        "links_sample": [
+          {
+            "text": "Planilla",
+            "href": "https://dev.h-l.cl/planilla"
+          },
+          {
+            "text": "Seguimiento BL",
+            "href": "https://dev.h-l.cl/seguimiento-bl"
+          },
+          {
+            "text": "Ingreso BL",
+            "href": "https://dev.h-l.cl/ingresobl"
+          },
+          {
+            "text": "Usuarios",
+            "href": "https://dev.h-l.cl/usuarios"
+          },
+          {
+            "text": "Roles",
+            "href": "https://dev.h-l.cl/roles"
+          },
+          {
+            "text": "Permisos",
+            "href": "https://dev.h-l.cl/permissions-catalog"
+          },
+          {
+            "text": "Config",
+            "href": "https://dev.h-l.cl/sys-config"
+          },
+          {
+            "text": "Clientes",
+            "href": "https://dev.h-l.cl/clientes"
+          },
+          {
+            "text": "Usuarios Clientes",
+            "href": "https://dev.h-l.cl/client-users"
+          },
+          {
+            "text": "Buques",
+            "href": "https://dev.h-l.cl/buques"
+          },
+          {
+            "text": "Abreviaciones",
+            "href": "https://dev.h-l.cl/abreviaciones"
+          },
+          {
+            "text": "Navieras",
+            "href": "https://dev.h-l.cl/navieras"
+          },
+          {
+            "text": "Tipos Documento",
+            "href": "https://dev.h-l.cl/tipos-documento"
+          },
+          {
+            "text": "Transportistas",
+            "href": "https://dev.h-l.cl/transportistas"
+          },
+          {
+            "text": "Choferes",
+            "href": "https://dev.h-l.cl/choferes"
+          },
+          {
+            "text": "Puertos",
+            "href": "https://dev.h-l.cl/puertos"
+          },
+          {
+            "text": "Claves",
+            "href": "https://dev.h-l.cl/claves"
+          },
+          {
+            "text": "Usuarios Claves",
+            "href": "https://dev.h-l.cl/claves-permissions"
+          },
+          {
+            "text": "Cerrar sesión",
+            "href": "https://dev.h-l.cl/logout"
+          }
+        ],
+        "nav_snippet": ""
+      }
+    ]
+  },
+  "old_nav": [
+    {
+      "text": "USUARIOS 11",
+      "href": "https://h-l.cl/?page=users"
+    },
+    {
+      "text": "USUARIOS CLI. 10",
+      "href": "https://h-l.cl/?page=client_users"
+    },
+    {
+      "text": "USUARIOS CLAVES",
+      "href": "https://h-l.cl/?page=claves_permissions"
+    },
+    {
+      "text": "CLAVES",
+      "href": "https://h-l.cl/?page=claves"
+    },
+    {
+      "text": "CLIENTES 197",
+      "href": "https://h-l.cl/?page=clients"
+    },
+    {
+      "text": "INGRESO BL",
+      "href": "https://h-l.cl/?page=ingresoBL"
+    },
+    {
+      "text": "PLANILLA",
+      "href": "https://h-l.cl/?page=planilla"
+    },
+    {
+      "text": "BUQUES",
+      "href": "https://h-l.cl/?page=buques"
+    },
+    {
+      "text": "NAVIERAS",
+      "href": "https://h-l.cl/?page=navieras"
+    },
+    {
+      "text": "TRANSPORTISTAS",
+      "href": "https://h-l.cl/?page=transportistas"
+    },
+    {
+      "text": "CHOFERES",
+      "href": "https://h-l.cl/?page=choferes"
+    },
+    {
+      "text": "GENERADOR DE ARCHIVOS",
+      "href": "https://h-l.cl/?page=generator"
+    },
+    {
+      "text": "PUERTOS",
+      "href": "https://h-l.cl/?page=ports"
+    },
+    {
+      "text": "CONFIG. REMESA",
+      "href": "https://h-l.cl/?page=remesa_form"
+    },
+    {
+      "text": "REMESA CLIENTE",
+      "href": "https://h-l.cl/?page=remesa_cliente"
+    },
+    {
+      "text": "GENERADOR DE REMESA",
+      "href": "https://h-l.cl/?page=remesa"
+    }
+  ]
+}

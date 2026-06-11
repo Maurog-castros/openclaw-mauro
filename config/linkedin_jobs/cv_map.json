@@ -1,0 +1,20 @@
+{
+  "default_cv": "cv_general.pdf",
+  "rules": [
+    {
+      "name": "backend",
+      "keywords_any": ["python", "backend", "django", "fastapi", "api"],
+      "cv": "cv_backend.pdf"
+    },
+    {
+      "name": "data",
+      "keywords_any": ["data", "analytics", "sql", "etl", "bi"],
+      "cv": "cv_data.pdf"
+    },
+    {
+      "name": "devops",
+      "keywords_any": ["devops", "kubernetes", "aws", "infra"],
+      "cv": "cv_devops.pdf"
+    }
+  ]
+}
